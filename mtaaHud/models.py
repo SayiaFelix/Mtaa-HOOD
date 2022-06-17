@@ -28,8 +28,9 @@ class Hood(models.Model):
         search_results = cls.objects.filter(hood_name__icontains = search_term)
         return search_results
 
-    def update_hood(self, hood_name):
+    def update_hood(self, hood_name, occupants_count):
         self.hood_name = hood_name
+        self.occupants_count = occupants_count
         self.save()
 
 class Information(models.Model):
@@ -107,7 +108,7 @@ class Profile(models.Model):
 
         post_save.connect(create_user_profile, sender=User)
 
-  
+
     @classmethod
     def get_profile(cls):
         profile = Profile.objects.all()
@@ -125,38 +126,11 @@ class Profile(models.Model):
     def save_profile(self):
         self.save()
 
-# class Profile(models.Model):
-#     p_photo = models.ImageField(upload_to='profile/', blank = True)
-#     name = models.ForeignKey(User, on_delete=models.CASCADE)
-#     contact = models.CharField(max_length=12)
-#     email = models.EmailField()
-#     bio = HTMLField()
-#    
+    class Meta:
+        ordering = ['user']
 
-
-#     def create_user_profile(sender, instance, created, **kwargs):
-#         if created:
-#             Profile.objects.create(user=instance)
-
-#         post_save.connect(create_user_profile, sender=User)
-
-#     @receiver(post_save, sender=User)
-#     def update_user_profile(sender, instance, created, **kwargs):
-#         if created:
-#             Profile.objects.create(user=instance)
-#         instance.profile.save()
-
-#     @classmethod
-#     def get_profile(cls):
-#         profile = Profile.objects.all()
-#         return profile
-
-#     class Meta:
-#         ordering = ['name']
-
-#     def __str__(self):
-#         return self.name
-
+    def __str__(self):
+        return self.user
 
 class Post(models.Model):
     title = models.CharField(max_length=150)
