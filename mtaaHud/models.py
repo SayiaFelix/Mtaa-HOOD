@@ -3,11 +3,9 @@ from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 import datetime as dt
 from django.db.models import Q
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-Priority=(
-    ('Informational', 'Informational'),
-    ('High Priority', 'High Priority'),
-)
 
 # Create your models here.
 class Hood(models.Model):
@@ -38,8 +36,7 @@ class Hood(models.Model):
 class Neighboorhood(models.Model):
     title = models.CharField(max_length=100)
     notification = HTMLField()
-    priority = models.CharField(max_length=15, choices=Priority, default="Informational")
-    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE)
     post_date = models.DateTimeField(auto_now_add=True)
 
@@ -107,6 +104,27 @@ class Profile(models.Model):
     email = models.EmailField()
     bio = HTMLField()
     neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE)
+
+
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+        post_save.connect(create_user_profile, sender=User)
+
+    @receiver(post_save, sender=User)
+    def update_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+        instance.profile.save()
+
+    @classmethod
+    def get_profile(cls):
+        profile = Profile.objects.all()
+        return profile
+
+    class Meta:
+        ordering = ['user']
 
     def __str__(self):
         return self.name
