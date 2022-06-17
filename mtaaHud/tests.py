@@ -95,38 +95,3 @@ class healthservicesTestClass(TestCase):
         health = healthservices.objects.all()
         self.assertTrue(len(health) == 0)
 
-# class BusinessTest(TestCase):
-#     def setUp(self):
-
-#         self.new_user = User(username = "cherry", email = "cherry@gmail.com", password = "awesomebouy",)
-#         self.new_user.save()
-
-#         self.mpesa= Business.objects.create(name='star',description='dope',email='xyz.test.com',owner=self.new_user,address="5233",contact="21426772")
-
-#     def test_instance(self):
-#         self.mpesa.save()
-#         self.assertTrue(isinstance(self.mpesa,Business))
-
-#     def test_get_business(self):
-#         self.mpesa.save()
-#         business = Business.get_business()
-#         self.assertTrue(len(business) >0 )
-
-# class PostTest(TestCase):
-#     def setUp(self):
-#         self.user = User.objects.create(id = 1, username='zyzu')
-#         # self.Kinoo = Hood.objects.create(hood_name='Kinoo')
-
-#         self.south = Hood.objects.create(
-#             hood_name='south',occupants_count =1)
-
-#         self.security= Post.objects.create(title='shida',post='soja ko doze manze',username= self.user, neibourhood= self.south,post_dated="10/6/2022")
-
-#     def test_instance(self):
-#         self.security.save()
-#         self.assertTrue(isinstance(self.security,Post))
-
-#     def test_delete_posts(self):
-#         self.security.save()
-#         self.security.delete()
-#         self.assertTrue(len(Post.objects.all()) == 0)
