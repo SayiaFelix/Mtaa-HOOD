@@ -10,7 +10,7 @@ from django.dispatch import receiver
 # Create your models here.
 class Hood(models.Model):
     hood_name = models.CharField(max_length = 100)
-    hood_photo = models.ImageField(upload_to='hoods/')
+    hood_photo = models.ImageField(upload_to='hood/')
     occupants_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
@@ -33,12 +33,14 @@ class Hood(models.Model):
         self.save()
 
 
-class Neighboorhood(models.Model):
-    title = models.CharField(max_length=100)
-    notification = HTMLField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+class Information(models.Model):
     neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    information = HTMLField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     post_date = models.DateTimeField(auto_now_add=True)
+    info_photo = models.ImageField(upload_to='info/')
+   
 
     def __str__(self):
         return self.title
@@ -60,7 +62,7 @@ class healthservices(models.Model):
 
 
 class Business(models.Model):
-    logo = models.ImageField(upload_to='businesslogo/')
+    b_photo = models.ImageField(upload_to='bussiness/')
     description = HTMLField()
     neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -74,7 +76,7 @@ class Business(models.Model):
 
 
 class Health(models.Model):
-    logo = models.ImageField(upload_to='health/')
+    photo = models.ImageField(upload_to='health/')
     neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -86,7 +88,7 @@ class Health(models.Model):
         return self.name
 
 
-class Services(models.Model):
+class Security(models.Model):
     neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     email = models.EmailField()
