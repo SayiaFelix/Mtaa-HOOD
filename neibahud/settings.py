@@ -76,9 +76,9 @@ WSGI_APPLICATION = 'neibahud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hood',
+        'NAME': 'hoods',
         'USER': 'moringa',
-        'PASSWORD': 'hood',
+        'PASSWORD': 'hoods',
     }
 }
 

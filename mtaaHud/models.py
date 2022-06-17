@@ -93,38 +93,69 @@ class Security(models.Model):
     def __str__(self):
         return self.name
 
-
 class Profile(models.Model):
-    p_photo = models.ImageField(upload_to='profile/', blank = True)
-    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
+    profile_photo = models.ImageField(upload_to='profiles/',null=True)
     contact = models.CharField(max_length=12)
-    email = models.EmailField()
-    bio = HTMLField()
-    neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE)
-
-
+    email = models.EmailField(null=True)
+    bio = HTMLField(null=True)
+    neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE,null=True)
+    
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
 
         post_save.connect(create_user_profile, sender=User)
 
-    @receiver(post_save, sender=User)
-    def update_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-        instance.profile.save()
-
+  
     @classmethod
     def get_profile(cls):
         profile = Profile.objects.all()
+
         return profile
 
-    class Meta:
-        ordering = ['name']
+    @classmethod
+    def search_profile(cls, name):
+        profile = Profile.objects.filter(user__username__icontains = name)
+        return profile
 
-    def __str__(self):
-        return self.name
+    def delete_profile(self):
+         self.delete()
+
+    def save_profile(self):
+        self.save()
+
+# class Profile(models.Model):
+#     p_photo = models.ImageField(upload_to='profile/', blank = True)
+#     name = models.ForeignKey(User, on_delete=models.CASCADE)
+#     contact = models.CharField(max_length=12)
+#     email = models.EmailField()
+#     bio = HTMLField()
+#    
+
+
+#     def create_user_profile(sender, instance, created, **kwargs):
+#         if created:
+#             Profile.objects.create(user=instance)
+
+#         post_save.connect(create_user_profile, sender=User)
+
+#     @receiver(post_save, sender=User)
+#     def update_user_profile(sender, instance, created, **kwargs):
+#         if created:
+#             Profile.objects.create(user=instance)
+#         instance.profile.save()
+
+#     @classmethod
+#     def get_profile(cls):
+#         profile = Profile.objects.all()
+#         return profile
+
+#     class Meta:
+#         ordering = ['name']
+
+#     def __str__(self):
+#         return self.name
 
 
 class Post(models.Model):
