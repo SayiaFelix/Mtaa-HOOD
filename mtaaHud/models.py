@@ -32,34 +32,16 @@ class Hood(models.Model):
         self.hood_name = hood_name
         self.save()
 
-
 class Information(models.Model):
     neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE)
+    info_photo = models.ImageField(upload_to='info/')
     title = models.CharField(max_length=100)
     information = HTMLField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post_date = models.DateTimeField(auto_now_add=True)
-    info_photo = models.ImageField(upload_to='info/')
    
-
     def __str__(self):
         return self.title
-
-
-
-class healthservices(models.Model):
-    healthservices = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.healthservices
-
-    def save_healthservices(self):
-        self.save()
-
-    @classmethod
-    def delete_healthservices(cls, healthservices):
-        cls.objects.filter(healthservices=healthservices).delete()
-
 
 class Business(models.Model):
     b_photo = models.ImageField(upload_to='bussiness/')
@@ -73,6 +55,19 @@ class Business(models.Model):
 
     def __str__(self):
         return self.name
+
+class healthservices(models.Model):
+    healthservices = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.healthservices
+
+    def save_healthservices(self):
+        self.save()
+
+    @classmethod
+    def delete_healthservices(cls, healthservices):
+        cls.objects.filter(healthservices=healthservices).delete()
 
 
 class Health(models.Model):
@@ -100,9 +95,9 @@ class Security(models.Model):
 
 
 class Profile(models.Model):
-    photo = models.ImageField(upload_to='profile/', blank = True)
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    p_photo = models.ImageField(upload_to='profile/', blank = True)
+    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    contact = models.CharField(max_length=12)
     email = models.EmailField()
     bio = HTMLField()
     neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE)
@@ -126,7 +121,7 @@ class Profile(models.Model):
         return profile
 
     class Meta:
-        ordering = ['user']
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -134,7 +129,7 @@ class Profile(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=150)
-    image = models.ImageField(upload_to='post/')
+    photo = models.ImageField(upload_to='post/')
     post = HTMLField()
     username = models.ForeignKey(User, on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE)
