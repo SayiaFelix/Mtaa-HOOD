@@ -32,8 +32,14 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{% url 'post' %}">Mtaa Posts</a>
-          {% comment %} <a class="dropdown-item" href="">Create Profile</a> {% endcomment %}
+          <hr>
           <a class="dropdown-item" href="{% url 'information' %}">Emergencies</a>
+          <hr>
+          <a class="dropdown-item" href="{% url 'business' %}">Businesses</a>
+          <hr>
+          <a class="dropdown-item" href="{% url 'health' %}">Health</a>
+          <hr>
+          <a class="dropdown-item" href="{% url 'service' %}">Security</a>
         </div>
       </li>
     </ul>

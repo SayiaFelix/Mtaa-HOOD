@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container">
     <div class="text-center mt-5 mb-2">
-        {% comment %} <a href="{% url 'new-notification' %}">
+        {% comment %} <a href="{% url 'new-information' %}">
             <button class="btn btn-lg btn-warning">Post A Notification</button>
         </a> {% endcomment %}
     </div>
@@ -13,8 +13,7 @@
         <thead>
             <tr>
                 <th scope="col">Title</th>
-                <th scope="col">Notification</th>
-                <th scope="col">Priority</th>
+                <th scope="col">Information</th>
                 <th scope="col">Posted by</th>
                 <th scope="col">Date</th>
             </tr>
@@ -23,13 +22,12 @@
             {% for info in informations %}
             <tr data-toggle="modal" data-target="#{{notification.id}}">
                 <td>{{info.title}}</td>
-                <td>{{info.notification|safe|truncatechars:85}}</td>
-                <td>{{info.priority}}</td>
-                <td>{{info.author}}</td>
+                <td>{{info.information|safe|truncatechars:85}}</td>
+                <td>{{info.user}}</td>
                 <td>{{info.post_date|date:"M d, Y"}}</td>
             </tr>
             <!-- Modal -->
-            <div class="modal fade" id="{{notification.id}}" tabindex="-1" role="dialog"
+            <div class="modal fade" id="{{info.id}}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content text-center">
@@ -37,7 +35,8 @@
                             <h3 class="text-center">{{info.title}}</h3>
                         </div>
                         <div class="modal-body">
-                            <p class="pmodal">{{info.notification|safe}}</p>
+                              <img class="card-img-top" class="img-responsive" src="{{info.info_photo.url}}" data-target="#extraModal{{info.id}}" data-toggle="modal" size="80px200">
+                            <p class="pmodal">{{info.information|safe}}</p>
                         </div>
                         <div class="modal-footer" style="display:block;">
                           
