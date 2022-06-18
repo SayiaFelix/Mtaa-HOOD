@@ -37,13 +37,13 @@
     </a>
   </div>
   <div class="row">
-    {% for post in blogposts %}
+    {% for post in posts %}
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <div class="card">
         <div class=" card-body">
-          <a href="/view/blog/{{post.id}}">
+          
             <h5 class="card-title">{{post.title}}</h5>
-          </a>
+          
           <h6 class="card-subtitle mb-2 text-muted">{{post.username}}</h6> 
           <p class="card-text">{{post.post| safe}}</p>
 
@@ -59,7 +59,7 @@
   </div>
 </div>
 
-{% for post in blogposts %}
+{% for post in posts %}
 <!-- Modal -->
 <div class="modal fade" id="extraModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

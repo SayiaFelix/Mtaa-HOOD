@@ -58,9 +58,9 @@ def information(request):
 def post(request):
     current_user=request.user
     profile = Profile.objects.get(user=current_user)
-    blogposts = Post.objects.filter(neighbourhood=profile.neighbourhood)
+    posts = Post.objects.filter(neighbourhood=profile.neighbourhood)
 
-    return render(request, 'Hood/posts.html', {"blogposts":blogposts})
+    return render(request, 'Hood/posts.html', {"posts":posts})
 
 # def view_blog(request, id):
 #     # try:
