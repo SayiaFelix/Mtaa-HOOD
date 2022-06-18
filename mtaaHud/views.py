@@ -62,40 +62,7 @@ def post(request):
 
     return render(request, 'Hood/posts.html', {"posts":posts})
 
-# def view_blog(request, id):
-#     # try:
-#     #     comments = Comment.objects.filter(post_id=id)
-#     # except:
-#     #     comments = []
-
-#     # posts = Post.objects.get(id=id)
-#     # if request.method == 'POST':
-#     #     form = CommentForm(request.POST, request.FILES)
-#     #     if form.is_valid():
-#     #         comment = form.save(commit=False)
-#     #         comment.username = request.user
-#     #         comment.post = posts
-#     #         comment.save()
-#     # else:
-#     #     form = CommentForm()
-
-#     try:
-#         comments = Comment.objects.filter(post_id=id)
-#     except:
-#         comments = []
-
-#     posts = Post.objects.get(id=id)
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             comment = form.save(commit=False)
-#             comment.username = request.user
-#             comment.post = posts
-#             comment.save()
-#     else:
-#         form = CommentForm()
-#         return render(request, 'Hood/view_post.html', {"posts":posts, "form":form, "comments":comments})
-def view_blog(request, id):
+def view_post(request, id):
   
     try:
         comments = Comment.objects.filter(post_id=id)
@@ -110,6 +77,9 @@ def view_blog(request, id):
             comment.username = request.user
             comment.post = blog
             comment.save()
+
+        return redirect('post')
+
     else:
         form = CommentForm()
         return render(request,  'Hood/view_post.html', {"blog":blog, "form":form, "comments":comments})
@@ -253,43 +223,6 @@ def add_info(request):
 
     return render(request, 'update/update_info.html', {"form":form})
 
-# def add_business(request):
-#     current_user = request.user
-#     profiles = Profile.objects.get(user = current_user)
-#     for profile in profiles:
-#         if profile.user.id == current_user.id:
-#             if request.method == 'POST':
-#                 form = BusinessForm(request.POST,request.FILES)
-#                 if form.is_valid():
-#                     business = form.save(commit=False)
-#                     business.owner = current_user
-#                     business.neighbourhood = profile.neighbourhood
-#                     business.save()
-#                     return redirect('/business')
-#             else:
-#                 form = BusinessForm()
-#             return render(request,'update/update_buss.html',{"user":current_user,"form":form})
-
-
-# def add_post(request):
-#     current_user = request.user
-#     profile = Profile.objects.get(user =current_user)
-
-#     if request.method == 'POST':
-#         form  = PostForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             blogpost = form.save(commit = False)
-#             blogpost.username = current_user
-#             blogpost.neighbourhood = profile.neighbourhood
-#             blogpost.save()
-
-#         return HttpResponseRedirect('/post')
-
-#     else:
-#         form = PostForm()
-
-#     return render(request, 'update/update_post.html', {"form":form})
-
 def add_post(request):
     current_user = request.user
     profile = Profile.objects.get(user =current_user)
@@ -297,10 +230,10 @@ def add_post(request):
     if request.method == 'POST':
         form  = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            blogpost = form.save(commit = False)
-            blogpost.username = current_user
-            blogpost.neighbourhood = profile.neighbourhood
-            blogpost.save()
+            post = form.save(commit = False)
+            post.username = current_user
+            post.neighbourhood = profile.neighbourhood
+            post.save()
 
         return HttpResponseRedirect('/post')
 
@@ -308,3 +241,4 @@ def add_post(request):
         form = PostForm()
 
     return render(request, 'update/update_post.html', {"form":form})
+

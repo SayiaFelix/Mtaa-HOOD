@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-from rest_framework.authtoken.views import obtain_auth_token
+
 
 urlpatterns=[
     url('^$',views.homepage, name='homepage'),
@@ -11,8 +11,8 @@ urlpatterns=[
     url('new/info', views.add_info, name = 'add_info'),
 
     url('post', views.post, name='post'),
-    url('view/blog/(\d+)', views.view_blog, name='view_blog'),
-    url('add/blogpost', views.add_post, name='new-blogpost'),
+    url('view/blog/(\d+)', views.view_post, name='view_blog'),
+    url('news/post', views.add_post, name='add_post'),
 
     url('health', views.health, name='health'),
     url('search/', views.search, name = 'search'),

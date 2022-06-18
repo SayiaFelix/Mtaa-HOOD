@@ -42,8 +42,20 @@
           <a class="dropdown-item fs-6" href="{% url 'health' %}">Health</a>
           <hr>
           <a class="dropdown-item fs-6" href="{% url 'service' %}">Security</a>
+          {% comment %} <hr>
+          <a class="dropdown-item fs-6" href="{% url 'add_business' %}">Add Buss</a> {% endcomment %}
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Post Today
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item fs-6" href="{% url 'add_business' %}">Register Bizz</a>
           <hr>
-          <a class="dropdown-item fs-6" href="{% url 'add_business' %}">Add Buss</a>
+          <a class="dropdown-item fs-6" href="{% url 'add_info' %}">Post Trends</a>
+          <hr>
+          <a class="dropdown-item fs-6" href="{% url 'add_post' %}">Create Blogs</a>
         </div>
       </li>
     </ul>

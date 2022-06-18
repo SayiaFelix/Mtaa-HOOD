@@ -32,9 +32,8 @@
 
 <div class="container">
   <div class="text-center mt-5 mb-2">
-    <a href="{% url 'new-blogpost' %}">
-      <button class="btn btn-warning">Create Post</button>
-    </a>
+    
+         <a class="dropdown-item fs-5 btn btn-outline-secondary btn-lg" href="{% url 'add_post' %}">Create Post</a>
   </div>
   <div class="row">
     {% for post in posts %}
