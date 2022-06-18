@@ -4,11 +4,11 @@
 {% load bootstrap4 %}
 
 <div class="container">
-  <div class="text-center mt-5 mb-2">
-    <a href="/post/{{post.id}}">
-      <button class="btn btn-warning">Create Post</button>
-    </a>
-  </div>
+     <div class="text-center mt-5 mb-2">
+        <a href="{% url 'add_post' %}">
+            <button class="btn btn-lg btn-warning">Create Post</button>
+        </a> 
+    </div>
 
   <div class="row">
     {% for post in posts %}

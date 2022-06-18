@@ -1,0 +1,27 @@
+{% extends "Hood/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    {% if form.errors %}
+      <p>Please enter correct value</p>
+    {% endif %}   
+  <div class="mx-auto" style="max-width:50rem; margin-top:50px;">
+        <div class="card">
+              <h4 class="card-header h4 text-center">Update Profile</h4>
+              <div class="card-body">
+                  <form  action="{%url 'add_post'%}" method="POST" enctype="multipart/form-data">
+                          {%csrf_token%}
+                          {% bootstrap_form form%}
+                          <button style="border: solid 1px #333; padding: 1em;" class="btn btn-outline-secondary btn-block mb-4 mx-auto" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                              <i class="fas fa-upload fa-lg"></i> Upload
+                          </button>
+                  </form>
+              </div>
+          </div>
+   </div>
+</div>
+<br>
+<hr>
+{% endblock %}
