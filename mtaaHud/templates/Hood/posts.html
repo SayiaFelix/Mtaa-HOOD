@@ -16,14 +16,14 @@
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <div class="card">
         <div class=" card-body">
-          <a href="/view/post/{{blog.id}}">
+          <a href="/post/{{blog.id}}">
             <h5 class="card-title">{{post.title}}</h5>
           </a>
           <a href="/user/{{post.username}}">
             <h6 class="card-subtitle mb-2 text-muted">{{post.username}}</h6>
           </a>
           <p class="card-text">{{post.post| safe}}</p>
-          <a href="/view/post/{{post.id}}" class="card-link">Continue reading</a>
+          <a href="/post/{{post.id}}" class="card-link">Continue reading</a>
         </div>
       </div>
     </div>

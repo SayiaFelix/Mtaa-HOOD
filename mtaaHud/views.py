@@ -48,6 +48,25 @@ def post(request):
     return render(request, 'Hood/posts.html', {"posts":posts})
 
 
+def view_blog(request, id):
+    try:
+        comments = Comment.objects.filter(post_id=id)
+    except:
+        comments = []
+
+    posts = Post.objects.get(id=id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.username = request.user
+            comment.post = posts
+            comment.save()
+    else:
+        form = CommentForm()
+        return render(request, 'Hood/view_post.html', {"posts":posts, "form":form, "comments":comments})
+
+
 def Services(request):
     current_user = request.user
     profile = Profile.objects.get(user=current_user)
