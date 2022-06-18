@@ -7,6 +7,10 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns=[
     url('^$',views.homepage, name='homepage'),
     url('information', views.information, name='information'),
+    url('post', views.post, name='post'),
+    url('health', views.health, name='health'),
+    url('services', views.services, name='services'),
+    url('businesses', views.businesses, name='businesses'),
   
    
 ]
