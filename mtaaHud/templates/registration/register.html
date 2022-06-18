@@ -1,0 +1,47 @@
+{% extends 'registration/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+ {% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container"> 
+     <hr>
+    <div class="row">
+        <div class="col-md-8">
+            <br>
+            <h1 class="text-center fw-bold">Awwwards. Hub</h1>
+             <hr>
+            <img src="https://img.freepik.com/free-vector/glass-trophy-acrylic-winner-award-realistic_107791-205.jpg?w=2000" style="height:550px;width:720px; border-radius:10px" class="img-fluid"alt="Instagram Lite Images">
+        </div>
+        <div class="col-md-4" style="background-color:#F5F5F5; border-radius:10px; box-shadow: 2px 2px 5px rgba(3,3,3,0.5);">
+            <br>
+            {% if form.errors %}
+                <p class="text-danger text-center">There was an error, check your Information and try again!!!</p>
+            {%else%}
+                <h1 class="h6 mb-3 font-weight-normal text-dark text-center">Sign up for you to Rate/Review and upload your projects.</h1>
+            {% endif %}
+            <div class="signup-fields">
+                <div class="section">  
+                    <div class="form-section">
+                         <form method="POST" action=''>
+                            <hr>
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                {{  form |crispy}}
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="btn btn-sm btn-outline-secondary btn-block" type="submit">Sign Up</button>
+                            </div>       
+                         </form>
+                    </div>
+                </div>
+                <div class="section">
+                    <p class="mt-3 text-center text-dark">Already have an account? <br> <a href="{%url 'login'%}">Log In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <p class="mt-5 mb-3 text-dark text-center"> &copy; 2022 Awwwards Hub</p>
+</div>
+{% endblock %}
