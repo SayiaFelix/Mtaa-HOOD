@@ -18,7 +18,7 @@
       
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="/profile/{{user.id}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{user}}
+         Profile
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="/profile/{{user.id}}">Profile</a>
@@ -38,4 +38,7 @@
       </li>
     </ul>
   </div>
+   <div class="col-2" >         
+        <h5 style="margin-top: 10px; float:right;"> <a class="" href="/profile/{{user.id}}" style="text-decoration: none; font-weight: bold; margin-top:10px;color:black;"  title="User">{{user}} <i class="fa-solid fa-user ml-2"></i></a></h5>
+    </div> 
 </nav>
