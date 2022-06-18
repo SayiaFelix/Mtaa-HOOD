@@ -43,37 +43,76 @@ def information(request):
     return render(request, 'Hood/info.html', {"informations":informations})
 
 
+# def post(request):
+#     current_user=request.user
+#     try:
+#      profile = Profile.objects.get(user=current_user)
+
+#     except Profile.DoesNotExist:
+#       profile = None
+#     # profile = Profile.objects.get(user=current_user)
+#     posts = Post.objects.filter(neighbourhood=profile.neighbourhood)
+
+#     return render(request, 'Hood/posts.html', {"posts":posts})
+
 def post(request):
     current_user=request.user
-    try:
-     profile = Profile.objects.get(user=current_user)
+    profile = Profile.objects.get(user=current_user)
+    blogposts = Post.objects.filter(neighbourhood=profile.neighbourhood)
 
-    except Profile.DoesNotExist:
-      profile = None
-    # profile = Profile.objects.get(user=current_user)
-    posts = Post.objects.filter(neighbourhood=profile.neighbourhood)
+    return render(request, 'Hood/posts.html', {"blogposts":blogposts})
 
-    return render(request, 'Hood/posts.html', {"posts":posts})
+# def view_blog(request, id):
+#     # try:
+#     #     comments = Comment.objects.filter(post_id=id)
+#     # except:
+#     #     comments = []
 
+#     # posts = Post.objects.get(id=id)
+#     # if request.method == 'POST':
+#     #     form = CommentForm(request.POST, request.FILES)
+#     #     if form.is_valid():
+#     #         comment = form.save(commit=False)
+#     #         comment.username = request.user
+#     #         comment.post = posts
+#     #         comment.save()
+#     # else:
+#     #     form = CommentForm()
 
-def view_post(request, id):
+#     try:
+#         comments = Comment.objects.filter(post_id=id)
+#     except:
+#         comments = []
+
+#     posts = Post.objects.get(id=id)
+#     if request.method == 'POST':
+#         form = CommentForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             comment = form.save(commit=False)
+#             comment.username = request.user
+#             comment.post = posts
+#             comment.save()
+#     else:
+#         form = CommentForm()
+#         return render(request, 'Hood/view_post.html', {"posts":posts, "form":form, "comments":comments})
+def view_blog(request, id):
+  
     try:
         comments = Comment.objects.filter(post_id=id)
     except:
         comments = []
 
-    posts = Post.objects.get(id=id)
+    blog = Post.objects.get(id=id)
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.username = request.user
-            comment.post = posts
+            comment.post = blog
             comment.save()
     else:
         form = CommentForm()
-        return render(request, 'Hood/view_post.html', {"posts":posts, "form":form, "comments":comments})
-
+        return render(request,  'Hood/view_post.html', {"blog":blog, "form":form, "comments":comments})
 
 def health(request):
     current_user = request.user
@@ -252,19 +291,58 @@ def add_business(request):
                 form = BusinessForm()
             return render(request,'update/update_buss.html',{"user":current_user,"form":form})
 
-def add_post(request):
+# def add_post(request):
+#     current_user = request.user
+#     profiles = Profile.objects.get(user = current_user)
+#     for profile in profiles:
+#         if profile.user.id == current_user.id:
+#             if request.method == 'POST':
+#                 form = PostForm(request.POST,request.FILES)
+#                 if form.is_valid():
+#                     post = form.save(commit=False)
+#                     post.owner = current_user
+#                     post.neighbourhood = profile.neighbourhood
+#                     post.save()
+#                     return redirect('/post')
+#             else:
+#                 form = PostForm()
+#             return render(request,'update/update_post.html',{"user":current_user,"form":form})
+
+
+# def add_post(request):
+#     current_user = request.user
+#     profile = Profile.objects.get(user =current_user)
+
+#     if request.method == 'POST':
+#         form  = PostForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             blogpost = form.save(commit = False)
+#             blogpost.username = current_user
+#             blogpost.neighbourhood = profile.neighbourhood
+#             blogpost.save()
+
+#         return HttpResponseRedirect('/post')
+
+#     else:
+#         form = PostForm()
+
+#     return render(request, 'update/update_post.html', {"form":form})
+
+def new_blogpost(request):
     current_user = request.user
-    profiles = Profile.objects.get(user = current_user)
-    for profile in profiles:
-        if profile.user.id == current_user.id:
-            if request.method == 'POST':
-                form = PostForm(request.POST,request.FILES)
-                if form.is_valid():
-                    post = form.save(commit=False)
-                    post.owner = current_user
-                    post.neighbourhood = profile.neighbourhood
-                    post.save()
-                    return redirect('/post')
-            else:
-                form = PostForm()
-            return render(request,'update/update_post.html',{"user":current_user,"form":form})
+    profile = Profile.objects.get(username=current_user)
+
+    if request.method == 'POST':
+        form  = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            blogpost = form.save(commit = False)
+            blogpost.username = current_user
+            blogpost.neighbourhood = profile.neighbourhood
+            blogpost.save()
+
+        return HttpResponseRedirect('/post')
+
+    else:
+        form = PostForm()
+
+    return render(request, 'update/update_post.html', {"form":form})
