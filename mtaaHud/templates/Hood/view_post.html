@@ -1,22 +1,22 @@
 {% extends 'Hood/base.html' %}
 {% load static %}
-{% load staticfiles %}
 {% load bootstrap4 %}
 
 
 {% block content %}
-
+  {% for post in posts %}
 <div class="container">
   <h4 class="card-title mt-3 text-center"><strong>{{post.title}}</strong></h4>
   <a href="/user/{{post.username}}">
     <h6 class="card-subtitle mb-2 text-muted text-center">Posted by {{post.username}}</h6>
   </a>
   <div class="card">
-    <img class="card-img-top" src="{{post.photo.url}}">
-
+       <img class="card-img-top" src="{{post.photo.url}}" alt="post" class="img-fluid"  style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);">
     <div class="card-body">
 
       <p class="card-text">{{post.post | safe}}</p>
+     <h6 class="card-subtitle mb-2 text-muted text-center">Posted on {{post.post_date}} by {{post.username}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted text-center">Mtaa: {{post.neighbourhood}}</h6>
     </div>
     <div class="card-footer">
       {% if comments%}
@@ -44,5 +44,5 @@
   </div>
 
 </div>
-
+{% endfor %}
 {% endblock %}
