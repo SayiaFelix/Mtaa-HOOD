@@ -1,17 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'Hood/base.html' %}
 {% load static %}
-{% load staticfiles %}
-
-
+{% load bootstrap4 %}
 {% block content %}
 
 <div class="container">
-  <div class="text-center mt-5 mb-2">
+  {% comment %} <div class="text-center mt-5 mb-2">
     <a href="{% url 'new-business' %}">
       <button class="btn btn-warning btn-lg">Register Business</button>
     </a>
-  </div>
-
+  </div> {% endcomment %}
   <div class="row">
     {% for business in businesses %}
     <div class="col-md-6">
@@ -22,9 +19,6 @@
         </div>
       </div>
     </div>
-
-
-
     <!-- Modal -->
     <div class="modal fade" id="{{business.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
       aria-hidden="true">
