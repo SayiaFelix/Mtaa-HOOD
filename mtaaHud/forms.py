@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 class InformationForm(forms.ModelForm):
     class Meta:
         model = Information
-        exclude = ['user', 'neighbourhood']
+        exclude = ['neighbourhood']
         
 
 class ProfileForm(forms.ModelForm):

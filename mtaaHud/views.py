@@ -214,27 +214,6 @@ def search(request):
         message = "You haven't searched for any term"
         return render(request, 'Hood/search.html', {"message":message})
 
-
-# def add_post(request):
-#     current_user = request.user
-#     profile = Profile.objects.get(user =current_user)
-
-#     if request.method == 'POST':
-#         form  = PostForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             post = form.save(commit = False)
-#             post.username = current_user
-#             post.neighbourhood = profile.neighbourhood
-#             post.save()
-
-#         return HttpResponseRedirect('/post')
-
-#     else:
-#         form = PostForm()
-
-#     return render(request, 'update/update_post.html', {"form":form})
-
-
 def add_business(request):
     current_user = request.user
     profile = Profile.objects.get(user=current_user)
@@ -267,7 +246,7 @@ def add_info(request):
             information.neighbourhood = profile.neighbourhood
             information.save()
 
-        return HttpResponseRedirect('/info')
+        return HttpResponseRedirect('/information')
 
     else:
         form =  InformationForm()
@@ -290,23 +269,6 @@ def add_info(request):
 #             else:
 #                 form = BusinessForm()
 #             return render(request,'update/update_buss.html',{"user":current_user,"form":form})
-
-# def add_post(request):
-#     current_user = request.user
-#     profiles = Profile.objects.get(user = current_user)
-#     for profile in profiles:
-#         if profile.user.id == current_user.id:
-#             if request.method == 'POST':
-#                 form = PostForm(request.POST,request.FILES)
-#                 if form.is_valid():
-#                     post = form.save(commit=False)
-#                     post.owner = current_user
-#                     post.neighbourhood = profile.neighbourhood
-#                     post.save()
-#                     return redirect('/post')
-#             else:
-#                 form = PostForm()
-#             return render(request,'update/update_post.html',{"user":current_user,"form":form})
 
 
 # def add_post(request):
