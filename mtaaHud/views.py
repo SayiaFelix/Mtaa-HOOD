@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from .models import *
 from .forms import *
@@ -8,6 +9,8 @@ import datetime as datetime
 import json
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.contrib import messages
+from django.urls import reverse
 
 # Create your views here.
 def homepage(request):
@@ -115,3 +118,61 @@ def update_profile(request):
         form = ProfileForm()
     return render(request, 'profile/update_user_profile.html', {"form": form})
 
+
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+         login(request, user)
+         return redirect('homepage')
+        
+        else:
+            messages.success(request,('Invalid information'))
+            return redirect('login')
+         
+    else:
+
+     return render(request,'registration/login.html')
+
+
+def register_user(request):
+
+    # form = UserRegisterForm.objects.all()
+    # response_data = {}
+
+    if request.method == 'POST':
+         form = UserRegisterForm(request.POST)
+         if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            
+
+            email = form.cleaned_data['email']
+            # send_welcome_email(username,email) 
+
+            user = authenticate(username=username, password=password)
+            login(request,user)
+
+            # response_data['username'] = username
+            # response_data['password'] = password
+
+            # UserRegisterForm.objects.create(
+            # username = username,
+            # password = password,
+            # )
+            # return JsonResponse(response_data)
+
+            messages.success(request,f'Hello {username}, Your account was Successfully Created.You will receive our email shortly.Thank You!!!')
+            return redirect('add_profile')
+    else:
+         form = UserRegisterForm()
+    return render (request,'registration/register.html',{'form':form})
+
+
+@login_required
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("login"))
