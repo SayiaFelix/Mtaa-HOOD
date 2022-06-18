@@ -235,24 +235,24 @@ def search(request):
 #     return render(request, 'update/update_post.html', {"form":form})
 
 
-# def add_business(request):
-#     current_user = request.user
-#     profile = Profile.objects.get(user=current_user)
+def add_business(request):
+    current_user = request.user
+    profile = Profile.objects.get(user=current_user)
 
-#     if request.method == "POST":
-#         form = BusinessForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             business = form.save(commit=False)
-#             business.owner = current_user
-#             business.neighbourhood = profile.neighbourhood
-#             business.save()
+    if request.method == "POST":
+        form = BusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.owner = current_user
+            business.neighbourhood = profile.neighbourhood
+            business.save()
 
-#         return HttpResponseRedirect('/business')
+        return HttpResponseRedirect('/business')
 
-#     else:
-#         form = BusinessForm()
+    else:
+        form = BusinessForm()
 
-#     return render(request, 'update/update_buss.html', {"form":form})
+    return render(request, 'update/update_buss.html', {"form":form})
 
 
 def add_info(request):
@@ -274,22 +274,22 @@ def add_info(request):
 
     return render(request, 'update/update_info.html', {"form":form})
 
-def add_business(request):
-    current_user = request.user
-    profiles = Profile.objects.get(user = current_user)
-    for profile in profiles:
-        if profile.user.id == current_user.id:
-            if request.method == 'POST':
-                form = BusinessForm(request.POST,request.FILES)
-                if form.is_valid():
-                    business = form.save(commit=False)
-                    business.owner = current_user
-                    business.neighbourhood = profile.neighbourhood
-                    business.save()
-                    return redirect('/business')
-            else:
-                form = BusinessForm()
-            return render(request,'update/update_buss.html',{"user":current_user,"form":form})
+# def add_business(request):
+#     current_user = request.user
+#     profiles = Profile.objects.get(user = current_user)
+#     for profile in profiles:
+#         if profile.user.id == current_user.id:
+#             if request.method == 'POST':
+#                 form = BusinessForm(request.POST,request.FILES)
+#                 if form.is_valid():
+#                     business = form.save(commit=False)
+#                     business.owner = current_user
+#                     business.neighbourhood = profile.neighbourhood
+#                     business.save()
+#                     return redirect('/business')
+#             else:
+#                 form = BusinessForm()
+#             return render(request,'update/update_buss.html',{"user":current_user,"form":form})
 
 # def add_post(request):
 #     current_user = request.user
@@ -328,9 +328,9 @@ def add_business(request):
 
 #     return render(request, 'update/update_post.html', {"form":form})
 
-def new_blogpost(request):
+def add_post(request):
     current_user = request.user
-    profile = Profile.objects.get(username=current_user)
+    profile = Profile.objects.get(user =current_user)
 
     if request.method == 'POST':
         form  = PostForm(request.POST, request.FILES)

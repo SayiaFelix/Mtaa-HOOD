@@ -10,7 +10,7 @@ urlpatterns=[
 
     url('post', views.post, name='post'),
     url('view/blog/(\d+)', views.view_blog, name='view_blog'),
-    url(r'^new/blogpost$', views.new_blogpost, name='new-blogpost'),
+    url(r'^new/blogpost$', views.add_post, name='new-blogpost'),
 
     # url('post/(\d+)', views.view_post, name='view_post'),
     url('health', views.health, name='health'),
