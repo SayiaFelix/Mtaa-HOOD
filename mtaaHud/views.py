@@ -174,3 +174,63 @@ def search(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'Hood/search.html', {"message":message})
+
+
+def add_post(request):
+    current_user = request.user
+    profile = Profile.objects.get(username=current_user)
+
+    if request.method == 'POST':
+        form  = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            blogpost = form.save(commit = False)
+            blogpost.username = current_user
+            blogpost.neighbourhood = profile.neighbourhood
+            blogpost.save()
+
+        return HttpResponseRedirect('/blog')
+
+    else:
+        form = PostForm()
+
+    return render(request, 'update/update_post.html', {"form":form})
+
+
+def add_business(request):
+    current_user = request.user
+    profile = Profile.objects.get(username=current_user)
+
+    if request.method == "POST":
+        form = BusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.owner = current_user
+            business.neighbourhood = profile.neighbourhood
+            business.save()
+
+        return HttpResponseRedirect('/businesses')
+
+    else:
+        form = BusinessForm()
+
+    return render(request, 'Update/update_business.html', {"form":form})
+
+
+def add_info(request):
+    current_user = request.user
+    profile = Profile.objects.get(username = current_user)
+
+    if request.method == "POST":
+        form = InformationForm(request.POST, request.FILES)
+        if form.is_valid():
+            information = form.save(commit=False)
+            information.author = current_user
+            information.neighbourhood = profile.neighbourhood
+            information.save()
+
+        return HttpResponseRedirect('/information')
+
+    else:
+        form =  InformationForm()
+
+    return render(request, 'Update/update_info.html', {"form":form})

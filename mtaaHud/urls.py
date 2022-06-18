@@ -13,9 +13,9 @@ urlpatterns=[
     url('services', views.services, name='service'),
     url('businesses', views.businesses, name='business'),
     url('profile/(\d+)', views.user_profile, name = 'user-profile'),
-    # url(r'^new/blogpost$', views.new_blogpost, name='new-blogpost'),
-    # url(r'^new/business$', views.new_business, name='new-business'),
-    # url(r'^new/notification$', views.new_notification, name = 'new-notification'),
+    url('new/post', views.add_post, name='add_post'),
+    url('new/business', views.add_business, name='add_business'),
+    url('new/info', views.add_info, name = 'add_info'),
     url('update/profile', views.update_profile, name = 'update-profile'),
     url('search/', views.search, name = 'search'),
   
