@@ -162,3 +162,17 @@ def register_user(request):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse("login"))
+
+def search(request):
+    if 'blog' in request.GET and request.GET["blog"]:
+        search_term = request.GET.get("blog")
+        searched_blogposts = Post.search_post(search_term)
+        message = f"{search_term}"
+
+        print(searched_blogposts)
+
+        return render(request, 'Hood/search.html', {"message":message, "blogs":searched_blogposts})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'Hood/search.html', {"message":message})

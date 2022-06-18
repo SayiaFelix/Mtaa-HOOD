@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 import datetime as dt
-from django.db.models import Q
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -145,7 +144,7 @@ class Post(models.Model):
 
     @classmethod
     def search_post(cls, search_term):
-        blogs = cls.objects.filter(Q (username__username=search_term) | Q (neighbourhood__neighbourhood=search_term) | Q (title__icontains=search_term))
+        blogs = cls.objects.filter(title__icontains=search_term)
         return blogs
 
 
