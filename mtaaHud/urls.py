@@ -12,7 +12,7 @@ urlpatterns=[
 
     url('post', views.post, name='post'),
     url('view/blog/(\d+)', views.view_blog, name='view_blog'),
-    url(r'^new/blogpost$', views.add_post, name='new-blogpost'),
+    url('add/blogpost', views.add_post, name='new-blogpost'),
 
     url('health', views.health, name='health'),
     url('search/', views.search, name = 'search'),
