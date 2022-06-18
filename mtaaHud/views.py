@@ -40,34 +40,34 @@ def information(request):
     return render(request, 'Hood/information.html', {"informations":informations})
 
 
-def blog(request):
+def post(request):
     current_user=request.user
-    profile = Profile.objects.get(username=current_user)
-    blogposts = BlogPost.objects.filter(neighbourhood=profile.neighbourhood)
+    profile = Profile.objects.get(user=current_user)
+    posts = Post.objects.filter(neighbourhood=profile.neighbourhood)
 
-    return render(request, 'blog.html', {"blogposts":blogposts})
+    return render(request, 'Hood/posts.html', {"posts":posts})
 
-@login_required(login_url='/accounts/login/')
-def health(request):
+
+def Services(request):
     current_user = request.user
-    profile = Profile.objects.get(username=current_user)
+    profile = Profile.objects.get(user=current_user)
     healthservices = Health.objects.filter(neighbourhood=profile.neighbourhood)
 
-    return render(request, 'health.html', {"healthservices":healthservices})
+    return render(request, 'Hood/healthservices.html', {"healthservices":healthservices})
 
 
-def authorities(request):
+def services(request):
     current_user=request.user
-    profile=Profile.objects.get(username=current_user)
-    authorities=Authorities.objects.filter(neighbourhood=profile.neighbourhood)
+    profile=Profile.objects.get(user=current_user)
+    services=Services.objects.filter(neighbourhood=profile.neighbourhood)
 
-    return render(request, 'authorities.html', {"authorities":authorities})
+    return render(request, 'Hood/services.html', {"services":services})
 
 
 def businesses(request):
     current_user = request.user
-    profile = Profile.objects.get(username = current_user)
+    profile = Profile.objects.get(user = current_user)
     businesses = Business.objects.filter(neighbourhood=profile.neighbourhood)
 
-    return render(request, 'businesses.html', {"businesses":businesses})
+    return render(request, 'Hood/businesses.html', {"businesses":businesses})
 
