@@ -23,7 +23,7 @@
 </head>
 
 <body style="background-color:rgba(244,247,246,.5)"> 
-    <style>
+    {% comment %} <style>
     body {
       font-family: "Lato", sans-serif;
       transition: background-color .5s;
@@ -115,7 +115,7 @@
     </style>
 
 <!-- Sidebar -->
-<div id="mySidenav" class="sidenav ">
+{% comment %} <div id="mySidenav" class="sidenav ">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <hr>
     <h4> <a href=""  style="text-decoration: none; font-weight: bold; "class="">Home</a></h4>
@@ -151,11 +151,17 @@
                 <h6 style="margin-top: 15px;margin-right:15px; text-align:center;  float:right; font-size:16px; font-weight:bold;"><a  class="text-center"style="text-decoration: none; color:white;padding-top:10px;"  href="">SUBMIT  YOUR  SITE!</a></h6>
           </div>     
     </div>
-      <hr>
+      <hr> 
+    </div> {% endcomment %}
+
       {% include "navbar.html" %} 
+      <br>
+      <br>
+      <br>
+      <hr>
       {% block content %}{%endblock%} 
       {% include "footer.html" %} 
-</div>
+
 
     {% block scripts %}
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -164,18 +170,5 @@
       <script src="{% static 'js/script.js' %}"></script>
       {% endblock %}
 
-  <script>
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-      document.getElementById("main").style.marginLeft = "250px";
-      document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-    }
-    
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-      document.getElementById("main").style.marginLeft= "0";
-      document.body.style.backgroundColor = "white";
-    }
-    </script>
 </body>
 </html>
