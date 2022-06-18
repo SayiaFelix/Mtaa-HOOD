@@ -1,0 +1,22 @@
+{% extends 'Hood/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="container">
+    <div class="text-center">
+        <div class="user-image mt-5">
+        {% if profile.profile_photo %}
+          <img src="{{profile.profile_photo.url}}" alt="profile" class="img-fluid"  style="border-radius: 50%;height:px;width:; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);">
+        {% endif %}
+            <img src="{{profile.profile_photo.url}}" alt="" height="250" width="250" style="border-radius: 50%;">
+        </div>
+        <hr>
+        <p class="mt-2">Username: <strong>{{profile.username}}</strong></p>
+        <p class="card-text">Email: <strong>{{profile.email}}</strong></p>
+        <p class="card-text">{{profile.description |safe}}</p>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -95,7 +95,7 @@ class Security(models.Model):
         return self.name
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
+    username = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
     profile_photo = models.ImageField(upload_to='profiles/',null=True)
     contact = models.CharField(max_length=12)
     email = models.EmailField(null=True)
@@ -127,10 +127,10 @@ class Profile(models.Model):
         self.save()
 
     class Meta:
-        ordering = ['user']
+        ordering = ['username']
 
     def __str__(self):
-        return self.user
+        return self.username
 
 class Post(models.Model):
     title = models.CharField(max_length=150)

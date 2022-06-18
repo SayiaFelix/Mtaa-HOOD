@@ -17,10 +17,10 @@ def homepage(request):
         current_user = request.user
 
         try:
-          profile = Profile.objects.get(user=current_user)
+          profile = Profile.objects.get(username=current_user)
         except Profile.DoesNotExist:
           profile = None
-        # profile = Profile.objects.get(user=current_user)
+        # profile = Profile.objects.get(username=current_user)
     except ObjectDoesNotExist:
         return redirect('')
 
@@ -29,12 +29,12 @@ def homepage(request):
 def information(request):
     current_user = request.user
     try:
-     profile = Profile.objects.get(user=current_user)
+     profile = Profile.objects.get(username=current_user)
 
     except Profile.DoesNotExist:
       profile = None
 
-    # profile = Profile.objects.get(user=current_user)
+    # profile = Profile.objects.get(username=current_user)
     informations = Information.objects.filter(neighbourhood=profile.neighbourhood)
 
     return render(request, 'Hood/information.html', {"informations":informations})
@@ -42,13 +42,18 @@ def information(request):
 
 def post(request):
     current_user=request.user
-    profile = Profile.objects.get(user=current_user)
+    try:
+     profile = Profile.objects.get(username=current_user)
+
+    except Profile.DoesNotExist:
+      profile = None
+    # profile = Profile.objects.get(user=current_user)
     posts = Post.objects.filter(neighbourhood=profile.neighbourhood)
 
     return render(request, 'Hood/posts.html', {"posts":posts})
 
 
-def view_blog(request, id):
+def view_post(request, id):
     try:
         comments = Comment.objects.filter(post_id=id)
     except:
@@ -67,7 +72,7 @@ def view_blog(request, id):
         return render(request, 'Hood/view_post.html', {"posts":posts, "form":form, "comments":comments})
 
 
-def Services(request):
+def health(request):
     current_user = request.user
     profile = Profile.objects.get(user=current_user)
     healthservices = Health.objects.filter(neighbourhood=profile.neighbourhood)
@@ -78,9 +83,9 @@ def Services(request):
 def services(request):
     current_user=request.user
     profile=Profile.objects.get(user=current_user)
-    services=Services.objects.filter(neighbourhood=profile.neighbourhood)
+    security=Security.objects.filter(neighbourhood=profile.neighbourhood)
 
-    return render(request, 'Hood/services.html', {"services":services})
+    return render(request, 'Hood/services.html', {"security":security})
 
 
 def businesses(request):
@@ -89,4 +94,67 @@ def businesses(request):
     businesses = Business.objects.filter(neighbourhood=profile.neighbourhood)
 
     return render(request, 'Hood/businesses.html', {"businesses":businesses})
+
+
+def my_profile(request):
+    current_user = request.user
+    try:
+      profile = Profile.objects.get(username=current_user)
+
+    except Profile.DoesNotExist:
+      profile = None
+
+    # profile = Profile.objects.get(username = current_user)
+
+    return render(request, 'profile/user_profile.html', {"profile":profile})
+
+
+
+def user_profile(request,profile_id):
+
+    profile = Profile.objects.get(pk = profile_id)
+  
+
+    return render(request,"profile/user_profile.html",{"profile":profile})
+
+# def user_profile(request, username):
+#     try:
+#      profile = Profile.objects.get(username=user)
+
+#     except Profile.DoesNotExist:
+#       profile = None
+
+#     user = User.objects.get(username = username)
+#     # profile = Profile.objects.get(username = user)
+
+#     return render(request, 'profile/user_profile.html', {"profile":profile})
+
+
+def create_profile(request):
+    current_user=request.user
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.username = current_user
+            profile.save()
+        return HttpResponseRedirect('/')
+
+    else:
+        form = ProfileForm()
+    return render(request, 'profile/profile.html', {"form":form})
+
+def update_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return redirect('homepage')
+
+    else:
+        form = ProfileForm()
+    return render(request, 'profile/update_user_profile.html', {"form": form})
 
