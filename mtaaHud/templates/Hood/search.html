@@ -4,32 +4,61 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        {% if blogs %}
-        <h2>Found {{blogs|length}} results with the search term "{{message}}"</h2>
+        {% if posts %}
+        <h2>Found {{posts|length}} results with the search term "{{message}}"</h2>
         {% else %}
         <h2>Found 0 results for the search term "{{message}}</h2>
         {% endif %}
     </div>
-
-    {% if blogs %}
-    <div class="text-center">
+    {% if posts %}
+    <div class="">
         <div class="panel">
             <div class="panel-body">
-                {% for blog in blogs %}
-                <div class="card">
-                    <div class="card-body">
-                        <a href="/view/blog/{{blog.id}}"><h5 class="card-title">
-                            {{blog.title}}</h5>
+                {% for post in posts %}
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="card">
+                      <div class=" card-body">
+                        <h5 class="card-title">Title: {{post.title}} posted by {{post.username}}</h5> 
+                        <p class="card-text">{{post.post| safe}}</p>
+                        <a href="" data-target="#extraModal{{post.id}}" data-toggle="modal" class="card-link">Read More </a>
+                        
+                        <a style="float: right"href="/post/{{post.id}}">
+                          View
                         </a>
-                        <a href="/user/{{blog.username}}">
-                            <h6 class="card-subtitle">{{blog.username}}</h6>
-                        </a>
-                        <p class="card-text">
-                            {{blog.post|truncatechars:200 | safe}}
-                        </p>
-                        <a href="/view/blog.{{blog.id}}" class="card-link">Continue reading</a>
+                      </div>
                     </div>
+                  </div>
+                  {% endfor %}
                 </div>
+              </div> 
+              {% for post in posts %}
+              <!-- Modal -->
+              <div class="modal fade" id="extraModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
+                <div class="modal-dialog text-center" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h6 class="modal-title" id="exampleModalLongTitle"> <b> {{post.title}}</b> posted by  <b>{{post.username}}</b></h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                      
+                      <img class="card-img-top" class="img-responsive" src="{{post.photo.url}}" data-target="#extraModal{{post.id}}" data-toggle="modal" size="80px200">
+                      <br>
+                      <hr>
+                     
+                      <p class="card-text"> <b>Bio: </b>  {{post.post|safe}} </p>
+                     
+                      <label>Posted on: <b> {{post.post_date|date:" M d Y" }} </b></label>
+                       <h5 class="card-subtitle mb-2 text-muted text-center">Mtaa: {{post.neighbourhood}}</h5>
+                      <hr>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
                 {% endfor %}
             </div>
         </div>
