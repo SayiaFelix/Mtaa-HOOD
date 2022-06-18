@@ -11,6 +11,18 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 def homepage(request):
+    try:
+        if not request.user.is_authenticated:
+            return redirect('/accounts/login/')
+        current_user = request.user
+
+        try:
+          profile = Profile.objects.get(user=current_user)
+        except Profile.DoesNotExist:
+          profile = None
+        # profile = Profile.objects.get(user=current_user)
+    except ObjectDoesNotExist:
+        return redirect('')
 
     return render(request,"Hood/homepage.html")
 
