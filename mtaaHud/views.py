@@ -16,7 +16,13 @@ def homepage(request):
 
 def information(request):
     current_user = request.user
-    profile = Profile.objects.get(username=current_user)
-    information = Information.objects.filter(neighbourhood=profile.neighbourhood)
+    try:
+     profile = Profile.objects.get(user=current_user)
 
-    return render(request, 'Hood/information.html', {"information":information})
+    except Profile.DoesNotExist:
+      profile = None
+
+    # profile = Profile.objects.get(user=current_user)
+    informations = Information.objects.filter(neighbourhood=profile.neighbourhood)
+
+    return render(request, 'Hood/information.html', {"informations":informations})

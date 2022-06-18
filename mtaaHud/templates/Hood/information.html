@@ -20,13 +20,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for infor in information %}
+            {% for info in informations %}
             <tr data-toggle="modal" data-target="#{{notification.id}}">
-                <td>{{notification.title}}</td>
-                <td>{{notification.notification|safe|truncatechars:85}}</td>
-                <td>{{notification.priority}}</td>
-                <td>{{notification.author}}</td>
-                <td>{{notification.post_date|date:"M d, Y"}}</td>
+                <td>{{info.title}}</td>
+                <td>{{info.notification|safe|truncatechars:85}}</td>
+                <td>{{info.priority}}</td>
+                <td>{{info.author}}</td>
+                <td>{{info.post_date|date:"M d, Y"}}</td>
             </tr>
             <!-- Modal -->
             <div class="modal fade" id="{{notification.id}}" tabindex="-1" role="dialog"
@@ -34,15 +34,15 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content text-center">
                         <div class="modal-header text-center">
-                            <h3 class="text-center">{{notification.title}}</h3>
+                            <h3 class="text-center">{{info.title}}</h3>
                         </div>
                         <div class="modal-body">
-                            <p class="pmodal">{{notification.notification|safe}}</p>
+                            <p class="pmodal">{{info.notification|safe}}</p>
                         </div>
                         <div class="modal-footer" style="display:block;">
-                            <p><span style="font-weight:bold;">Priority:</span> {{notification.priority}}</p>
+                          
                             <p><span style="font-weight:bold;">Posted on:</span>
-                                {{notification.post_date|date:"M d, Y"}}</p>
+                                {{info.post_date|date:"M d, Y"}}</p>
                         </div>
                     </div>
                 </div>
