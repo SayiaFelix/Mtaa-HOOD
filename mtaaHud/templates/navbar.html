@@ -21,8 +21,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="/profile/{{user.id}}">Profile</a>
+          {% comment %} <a class="dropdown-item" href="">Create Profile</a> {% endcomment %}
           <a class="dropdown-item" href="{% url 'update-profile' %}">Update Profile</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+        
         </div>
       </li>
     </ul>

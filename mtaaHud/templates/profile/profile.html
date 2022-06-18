@@ -1,32 +1,63 @@
 {% extends "Hood/base.html" %}
 {% load bootstrap4 %}
 {% load static %}
-
 {% block content %}
+
+
+<br>
+<br>
 <div class="container">
-    <div class="row">
-            <div class="col-md-4 mx-auto mt-5 bg-light pt-5 pb-3">
-            {{form.media}}
+    <h3 class=""> <b>{{ profile.user }}</b> Profile Info</h3>
+    <h4 class="">Mtaa: <b>{{ profile.neighbourhood }}</b></h4>
 
-            {% if form.errors %}
-            <p>Please enter correct value</p>
-            {% endif %}
-
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h3>Create your profile</h3>
-                    <form action="{% url 'create-profile' %}" method="post" enctype="multipart/form-data">
-
-                        {% csrf_token %}
-                        {% bootstrap_form form %}
-
-                        <div class="form-group"><input type="submit" value="post" class="btn btn-primary"></div>
-                        <input type="hidden" name="next" value="/">
-                    
-                    </form>
-                </div>
-            </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+          <br>
+          {% if profile.profile_photo %}
+          <img src="{{profile.profile_photo.url}}" alt="profile" class="img-fluid"  style="border-radius: 50%;height:px;width:; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);">
+          {% endif %}
         </div>
+        <div class="col-md-5 text-left ml-5">
+          <br><br><br>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+             <h4> <span class=""> <b>{{ profile.username }}</b></span></h4>
+            </li>
+            <hr>
+            <br>
+            {% if profile.user == user %}
+            <li class="list-inline-item">
+              <a data-toggle="modal" data-target="#edit" style="text-decoration:none;"  href=""><i class="far fa-edit"></i>Edit Profile</a>
+            </li>
+            {% endif %}
+          </ul>
+            <h6 class=""> <b>Contact:</b> <em> {{profile.contact}}</em></h6>
+            <h6 class=""> <b>Email:</b>  {{profile.email}}</h6>
+            <p class="card-text"> <b>Bio: </b>  {{profile.bio|safe}} </p>
+          <br>
+        </div>
+      </div>
     </div>
+  </div>
+  <br>
+  <hr>
+
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <ul class="list-group">
+          <li class="list-group-item text-center"><a href="{% url 'update-profile' %}">Edit Profile</a></li>
+          <li class="list-group-item text-center"><a href="/logout/">Log Out</a></li>
+          <li class="list-group-item text-center"><a data-dismiss="modal">Cancel</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
+<hr>
 {% endblock %}
