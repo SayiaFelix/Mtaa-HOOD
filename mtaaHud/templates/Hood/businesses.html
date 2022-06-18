@@ -8,9 +8,13 @@
     <a href="{% url 'new-business' %}">
       <button class="btn btn-warning btn-lg">Register Business</button>
     </a>
-  </div> {% endcomment %}
+  </div> {% endcomment %} 
+    <div class="col-md-12 mt-3">
+      <h1> Businesses</h1>
+    </div>
   <div class="row">
     {% for business in businesses %}
+  
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">

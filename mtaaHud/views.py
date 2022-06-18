@@ -86,9 +86,9 @@ def health(request):
 def services(request):
     current_user=request.user
     profile=Profile.objects.get(user=current_user)
-    security=Security.objects.filter(neighbourhood=profile.neighbourhood)
+    securities=Security.objects.filter(neighbourhood=profile.neighbourhood)
 
-    return render(request, 'Hood/services.html', {"security":security})
+    return render(request, 'Hood/security.html', {"securities":securities})
 
 
 def businesses(request):

@@ -1,0 +1,41 @@
+{% extends 'Hood/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="container">
+  <h1 class="mt-3">Security Section</h1>
+  <div class="row">
+    {% for security in securities %}
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title" data-toggle="modal" data-target="#{{security.id}}">{{security.name}}</h3>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="{{security.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content text-center">
+          <div class="modal-header text-center">
+            <h3 class="text-center">{{security.name}}</h3>
+          </div>
+          <div class="modal-body">
+            <h4 class="text-center">Contacts</h4>
+            <p>Phone Number: {{security.contact}}</p>
+            <p>Address: {{security.address}}</p>
+          </div>
+          <div class="modal-footer">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}
