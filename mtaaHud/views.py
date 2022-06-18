@@ -69,20 +69,20 @@ def view_post(request, id):
     except:
         comments = []
 
-    blog = Post.objects.get(id=id)
+    post = Post.objects.get(id=id)
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.username = request.user
-            comment.post = blog
+            comment.post = post
             comment.save()
 
         return redirect('post')
 
     else:
         form = CommentForm()
-        return render(request,  'Hood/view_post.html', {"blog":blog, "form":form, "comments":comments})
+        return render(request,  'Hood/view_post.html', {"post":post, "form":form, "comments":comments})
 
 def health(request):
     current_user = request.user

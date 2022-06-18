@@ -39,6 +39,10 @@ class Information(models.Model):
     information = HTMLField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post_date = models.DateTimeField(auto_now_add=True)
+
+    def search_posts(cls, search_term):
+        blogs = cls.objects.filter(title__icontains=search_term)
+        return blogs
    
     def __str__(self):
         return self.title
