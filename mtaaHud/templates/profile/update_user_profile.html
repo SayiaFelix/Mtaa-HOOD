@@ -3,40 +3,26 @@
 {% load static %}
 
 {% block content %}
+
 <div class="container">
-  <div class="row">
-        <div class="col-md-4 mx-auto mt-5 bg-light pt-5 pb-3">
-        {{form.media}}
-
-        {% if form.errors %}
-        <p>Please enter correct value</p>
-        {% endif %}
-
-        <div class="panel panel-default">
-
-            <div class="panel-body">
-
-                <div class="text-center">
-                    <h3>Update your profile</h3>
-                    <form action="{% url 'update-profile' %}" method="post" enctype="multipart/form-data">
-
-                        {% csrf_token%}
-                        {% bootstrap_form form %}
-
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-warning" value="Post">
-
-                        </div>
-                        <input type="hidden" name="next" value="/">
-
-                    </form>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-  </div>
-
+    {% if form.errors %}
+      <p>Please enter correct value</p>
+    {% endif %}   
+  <div class="mx-auto" style="max-width:50rem; margin-top:50px;">
+        <div class="card">
+              <h4 class="card-header h4 text-center">Update Profile</h4>
+              <div class="card-body">
+                  <form  action="{%url 'update-profile'%}" method="POST" enctype="multipart/form-data">
+                          {%csrf_token%}
+                          {% bootstrap_form form%}
+                          <button style="border: solid 1px #333; padding: 1em;" class="btn btn-outline-secondary btn-block mb-4 mx-auto" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                              <i class="fas fa-upload fa-lg"></i> Upload
+                          </button>
+                  </form>
+              </div>
+          </div>
+   </div>
 </div>
+<br>
+<hr>
 {% endblock %}
