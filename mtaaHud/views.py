@@ -138,10 +138,6 @@ def login_user(request):
 
 
 def register_user(request):
-
-    # form = UserRegisterForm.objects.all()
-    # response_data = {}
-
     if request.method == 'POST':
          form = UserRegisterForm(request.POST)
          if form.is_valid():
@@ -155,18 +151,8 @@ def register_user(request):
 
             user = authenticate(username=username, password=password)
             login(request,user)
-
-            # response_data['username'] = username
-            # response_data['password'] = password
-
-            # UserRegisterForm.objects.create(
-            # username = username,
-            # password = password,
-            # )
-            # return JsonResponse(response_data)
-
             messages.success(request,f'Hello {username}, Your account was Successfully Created.You will receive our email shortly.Thank You!!!')
-            return redirect('add_profile')
+            return redirect('update-profile')
     else:
          form = UserRegisterForm()
     return render (request,'registration/register.html',{'form':form})
