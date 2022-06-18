@@ -1,6 +1,5 @@
 {% extends 'Hood/base.html' %}
 {% load static %}
-{% load staticfiles %}
 {% block content %}
 {% load bootstrap4 %}
 
@@ -16,7 +15,7 @@
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <div class="card">
         <div class=" card-body">
-          <a href="/post/{{blog.id}}">
+          <a href="/post/{{post.id}}">
             <h5 class="card-title">{{post.title}}</h5>
           </a>
           <a href="/user/{{post.username}}">
