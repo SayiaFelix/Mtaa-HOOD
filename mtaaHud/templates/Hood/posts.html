@@ -5,7 +5,7 @@
 
 <div class="container">
   <div class="text-center mt-5 mb-2">
-    <a href="">
+    <a href="/post/{{post.id}}">
       <button class="btn btn-warning">Create Post</button>
     </a>
   </div>
@@ -17,8 +17,11 @@
         <div class=" card-body">
           <h5 class="card-title">Title: {{post.title}} posted by {{post.username}}</h5> 
           <p class="card-text">{{post.post| safe}}</p>
-
           <a href="" data-target="#extraModal{{post.id}}" data-toggle="modal" class="card-link">Read More </a>
+          
+          <a style="float: right"href="/post/{{post.id}}">
+            View & Comment 
+          </a>
         </div>
       </div>
     </div>
@@ -43,7 +46,9 @@
         <hr>
        
         <p class="card-text"> <b>Bio: </b>  {{post.post|safe}} </p>
+       
         <label>Posted on: <b> {{post.post_date|date:" M d Y" }} </b></label>
+         <h5 class="card-subtitle mb-2 text-muted text-center">Mtaa: {{post.neighbourhood}}</h5>
         <hr>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
