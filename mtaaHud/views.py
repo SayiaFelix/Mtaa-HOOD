@@ -40,7 +40,7 @@ def information(request):
     # profile = Profile.objects.get(username=current_user)
     informations = Information.objects.filter(neighbourhood=profile.neighbourhood)
 
-    return render(request, 'Hood/information.html', {"informations":informations})
+    return render(request, 'Hood/info.html', {"informations":informations})
 
 
 def post(request):

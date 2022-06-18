@@ -21,9 +21,9 @@
          Profile
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/profile/{{user.id}}">Profile</a>
-          {% comment %} <a class="dropdown-item" href="">Create Profile</a> {% endcomment %}
-          <a class="dropdown-item" href="{% url 'update-profile' %}">Update Profile</a>
+          <a class="dropdown-item fs-6" href="/profile/{{user.id}}">Profile</a>
+          <hr>
+          <a class="dropdown-item fs-6" href="{% url 'update-profile' %}">Update Profile</a>
         </div>
       </li>
      <li class="nav-item dropdown">
@@ -31,15 +31,15 @@
           Trends
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="{% url 'post' %}">Mtaa Posts</a>
+          <a class="dropdown-item fs-6" href="{% url 'post' %}">Mtaa Posts</a>
           <hr>
-          <a class="dropdown-item" href="{% url 'information' %}">Emergencies</a>
+          <a class="dropdown-item fs-6" href="{% url 'info' %}">Emergencies</a>
           <hr>
-          <a class="dropdown-item" href="{% url 'business' %}">Businesses</a>
+          <a class="dropdown-item fs-6" href="{% url 'business' %}">Businesses</a>
           <hr>
-          <a class="dropdown-item" href="{% url 'health' %}">Health</a>
+          <a class="dropdown-item fs-6" href="{% url 'health' %}">Health</a>
           <hr>
-          <a class="dropdown-item" href="{% url 'service' %}">Security</a>
+          <a class="dropdown-item fs-6" href="{% url 'service' %}">Security</a>
         </div>
       </li>
     </ul>

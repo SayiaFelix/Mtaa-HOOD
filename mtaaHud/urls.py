@@ -6,7 +6,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns=[
     url('^$',views.homepage, name='homepage'),
-    url('information', views.information, name='information'),
+    url('information', views.information, name='info'),
     url('post', views.post, name='post'),
     url('post/(\d+)', views.view_post, name='view_post'),
     url('health', views.health, name='health'),
