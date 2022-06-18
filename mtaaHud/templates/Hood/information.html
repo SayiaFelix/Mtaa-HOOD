@@ -1,6 +1,6 @@
 {% extends 'Hood/base.html' %}
 {% load static %}
-{% load staticfiles %}
+
 
 {% block content %}
 <div class="container">
@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             {% for info in informations %}
-            <tr data-toggle="modal" data-target="#{{notification.id}}">
+            <tr data-toggle="modal" data-target="#{{info.id}}">
                 <td>{{info.title}}</td>
                 <td>{{info.information|safe|truncatechars:85}}</td>
                 <td>{{info.user}}</td>
