@@ -17,9 +17,39 @@
         <div class=" card-body">
           <h5 class="card-title">Title: {{post.title}} posted by {{post.username}}</h5> 
           <p class="card-text">{{post.post| safe}}</p>
-          <a href="" data-target="#extraModal{{post.id}}" data-toggle="modal" class="card-link">Read More </a>
+      
           
-          <a style="float: right"href="/post/{{post.id}}">
+        
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endfor %}  {% endcomment %}
+
+
+<div class="container">
+  <div class="text-center mt-5 mb-2">
+    <a href="{% url 'new-blogpost' %}">
+      <button class="btn btn-warning">Create Post</button>
+    </a>
+  </div>
+  <div class="row">
+    {% for post in blogposts %}
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class=" card-body">
+          <a href="/view/blog/{{post.id}}">
+            <h5 class="card-title">{{post.title}}</h5>
+          </a>
+          <h6 class="card-subtitle mb-2 text-muted">{{post.username}}</h6> 
+          <p class="card-text">{{post.post| safe}}</p>
+
+          <a href="" data-target="#extraModal{{post.id}}" data-toggle="modal" class="card-link">Read More </a>
+          {% comment %} <a href="/view/blog/{{blog.id}}" class="card-link">Continue reading</a> {% endcomment %}
+            <a style="float: right"href="view/blog/{{post.id}}">
             View & Comment 
           </a>
         </div>
@@ -29,7 +59,7 @@
   </div>
 </div>
 
-{% for post in posts %}
+{% for post in blogposts %}
 <!-- Modal -->
 <div class="modal fade" id="extraModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -57,32 +87,5 @@
     </div>
   </div>
 </div>
-{% endfor %}  {% endcomment %}
-
-
-<div class="container">
-  <div class="text-center mt-5 mb-2">
-    <a href="{% url 'new-blogpost' %}">
-      <button class="btn btn-warning">Create Post</button>
-    </a>
-  </div>
-  <div class="row">
-    {% for blog in blogposts %}
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="card">
-        <div class=" card-body">
-          <a href="/view/blog/{{blog.id}}">
-            <h5 class="card-title">{{blog.title}}</h5>
-          </a>
-          <a href="/user/{{blog.username}}">
-            <h6 class="card-subtitle mb-2 text-muted">{{blog.username}}</h6>
-          </a>
-          <p class="card-text">{{blog.post| safe}}</p>
-          <a href="/view/blog/{{blog.id}}" class="card-link">Continue reading</a>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</div>
+ {% endfor %}
 {% endblock %}

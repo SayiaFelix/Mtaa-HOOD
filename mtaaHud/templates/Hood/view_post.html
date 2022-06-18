@@ -48,11 +48,12 @@
 
 <div class="container">
   <h4 class="card-title mt-3 text-center"><strong>{{blog.title}}</strong></h4>
-  <a href="/user/{{blog.username}}">
+  
     <h6 class="card-subtitle mb-2 text-muted text-center">Posted by {{blog.username}}</h6>
-  </a>
+  
   <div class="card">
-    <img class="card-img-top" src="{{blog.image.url}}">
+     <img class="card-img-top" src="{{blog.photo.url}}" alt="post" class="img-fluid"  style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);">
+    {% comment %} <img class="card-img-top" src="{{blog.photo.url}}"> {% endcomment %}
 
     <div class="card-body">
 
