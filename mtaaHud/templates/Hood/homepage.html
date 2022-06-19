@@ -5,25 +5,28 @@
 {% load crispy_forms_tags %}
 {% load static %}
 <div class="container">
-<h1 class="text-center">Hello CHERRY</h1>
+<h1 class="text-center">Neiba Mtaa Vibe</h1>
 <br>
 
-{% comment %} <div class="container-fluid">
+<div class="containe">
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 collage">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 image">
             <a href="">
-                <img src="{% static 'img/alerts.jpg' %}" alt="" class="card-img-top">
-                <h4 class="centered">Alerts</h4>
+                <img src="{% static 'images/alerts.jpg' %}" alt="" style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);" class="card-img-top image-fluid">
+                <h4 class="mtaa">Join Mtaa
+
+
+                </h4>
             </a>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 collage">
+        {% comment %} <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 collage">
             <a href="">
                 <img src="{% static 'img/neighbourhood.jpg' %}" alt="" class="card-img-top">
                 <h4 class="centered">Neighbourhood Posts</h4>
             </a>
-        </div>
+        </div> {% endcomment %}
     </div>
-    <div class="row">
+    {% comment %} <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 collage">
             <a href="">
                 <img src="{% static 'img/health.jpg' %}" alt="" class="card-img-top">
@@ -42,10 +45,11 @@
                 <h4 class="centered">Authorities</h4>
             </a>
         </div>
-    </div>
+    </div> {% endcomment %}
 </div>
+
 <style>
-    .centered {
+    .mtaa {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -58,16 +62,16 @@
         font-family: 'Montserrat', sans-serif;
     }
 
-    .centered:hover {
+    .mtaa:hover {
         background-color: rgba(255, 255, 255, 0.7);
         color: black;
         font-family: 'Montserrat', sans-serif;
     }
 
-    .collage {
+    .image {
         padding: 0 !important;
     }
-</style> {% endcomment %}
+</style> 
 </div>
 
 {% endblock %}
