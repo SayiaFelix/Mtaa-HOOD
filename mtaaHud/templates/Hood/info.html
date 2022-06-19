@@ -12,15 +12,12 @@
         </div>
         <div class="text-center mt-5 mb-2 mx-auto">
             <a class=" text-light dropdown-item fs-4 btn btn-outline-primary btn-lg" href="{% url 'add_info' %}">Post Blog</a>
-                {% comment %} <button class="btn btn-sm btn-transparent">
-                        <a class=" text-primary dropdown-item fs-3 btn btn-outline-secondary btn-lg" href="{% url 'add_info' %}">Post Blog</a>
-                </button> {% endcomment %}
-        
+            
         </div>
         <hr>
         <div class="row">
             {% for info in informations %}
-            <div style="" class="col-4 shadow p-3 mb-4 bg-body rounded-top border-top border-2 border-secondary ml-3" style="border-radius:10px;">
+            <div style="" class="col-4 shadow mb-4 bg-body rounded-top border-top border-2 border-secondary p-1" style="border-radius:15px; border-left:2px solid black;">
             
                 <div class="card-body">
                     <h5 class="card-title"> <b>{{info.title}}</b></h5>
@@ -48,11 +45,9 @@
                 <img class="card-img-top" class="img-responsive" src="{{info.info_photo.url}}" data-target="#extraModal{{info.id}}" data-toggle="modal" size="80px200">
                 <br>
                 <hr>
-                <p class="card-text"> <b> </b>  {{info.information|safe}} </p>
+                <p class="card-text">  <b>About: </b>  {{info.information|safe}} </p>
             
-                <label>Posted on: <b> {{info.post_date|date:"M d, Y"}}</b></label>
-                <h5>Posted by :<b>{{info.user}}</b></h5>
-                <h5 class="card-subtitle mb-2 text-dark">Mtaa: {{info.neighbourhood}}</h5>
+                <label>Posted on: <em><b> {{info.post_date|date:"M d, Y"}}</b></em> by <b>{{info.user}}</b> from <b> {{info.neighbourhood}}</b></label>
                 <hr>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
