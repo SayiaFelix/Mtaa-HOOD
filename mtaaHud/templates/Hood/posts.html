@@ -2,58 +2,58 @@
 {% load static %}
 {% block content %}
 {% load bootstrap4 %}
-
-<div class="container">
-  <div class="text-center mt-5 mb-2">
-         <a class="dropdown-item fs-5 btn btn-outline-secondary btn-lg" href="{% url 'add_info' %}">Create Post</a>
+<div id="Registration">
+  <div class="container">
+    <div class="text-center mt-5 mb-2">
+          <a class="dropdown-item fs-5 btn btn-outline-secondary btn-lg" href="{% url 'add_info' %}">Create Post</a>
+    </div>
+    <div class="row">
+      {% for post in posts %}
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="card">
+          <div class=" card-body">
+              <h3 class="card-title">{{post.title}}</h3>
+            <hr>
+            {% comment %} <h5 class="card-subtitle mb-2 text-dark">{{post.username}}</h5>  {% endcomment %}
+            <p class="card-text">{{post.post| safe|truncatechars:20}}</p>
+            <hr>
+              <a class="btn btn-sm btn-outline-primary"href="view/blog/{{post.id}}">
+              View & Comment 
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
-  <div class="row">
-    {% for post in posts %}
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-      <div class="card">
-        <div class=" card-body">
-          
-            <h5 class="card-title">{{post.title}}</h5>
-          
-          <h6 class="card-subtitle mb-2 text-muted">{{post.username}}</h6> 
-          <p class="card-text">{{post.post| safe}}</p>
 
-          <a href="" data-target="#extraModal{{post.id}}" data-toggle="modal" class="card-link">Read More </a>
-            <a style="float: right"href="view/blog/{{post.id}}">
-            View & Comment 
-          </a>
+  {% for post in posts %}
+  <!-- Modal -->
+  <div class="modal fade" id="extraModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLongTitle"> <b> {{post.title}}</b> posted by  <b>{{post.username}}</b></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </div>
+        <div class="modal-body">
+          <img class="card-img-top" class="img-responsive" src="{{post.image.url}}" data-target="#extraModal{{post.id}}" data-toggle="modal" size="80px200">
+          <br>
+          <hr>
+          <p class="card-text"> <b>Bio: </b>  {{post.post|safe}} </p>
+        
+          <label>Posted on: <b> {{post.post_date|date:" M d Y" }} </b></label>
+          <h5 class="card-subtitle mb-2 text-muted text-center">Mtaa: {{post.neighbourhood}}</h5>
+          <hr>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
-    {% endfor %}
   </div>
+  <br>
+  {% endfor %}
 </div>
-
-{% for post in posts %}
-<!-- Modal -->
-<div class="modal fade" id="extraModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLongTitle"> <b> {{post.title}}</b> posted by  <b>{{post.username}}</b></h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </div>
-      <div class="modal-body">
-        <img class="card-img-top" class="img-responsive" src="{{post.image.url}}" data-target="#extraModal{{post.id}}" data-toggle="modal" size="80px200">
-        <br>
-        <hr>
-        <p class="card-text"> <b>Bio: </b>  {{post.post|safe}} </p>
-       
-        <label>Posted on: <b> {{post.post_date|date:" M d Y" }} </b></label>
-         <h5 class="card-subtitle mb-2 text-muted text-center">Mtaa: {{post.neighbourhood}}</h5>
-        <hr>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
- {% endfor %}
 {% endblock %}

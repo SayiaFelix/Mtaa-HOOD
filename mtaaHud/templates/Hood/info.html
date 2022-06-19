@@ -3,60 +3,60 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<div class="container">
-    <div class="text-center mt-5 mb-2 mx-auto">
-         <a class=" text-primary dropdown-item fs-3 btn btn-outline-secondary btn-lg" href="{% url 'add_info' %}">Post Blog</a>
-            {% comment %} <button class="btn btn-sm btn-transparent">
-                      <a class=" text-primary dropdown-item fs-3 btn btn-outline-secondary btn-lg" href="{% url 'add_info' %}">Post Blog</a>
-            </button> {% endcomment %}
-      
-    </div>
-    <hr>
-    <div class="row">
-          {% for info in informations %}
-        <div style="width: 20rem;" class="col-3 shadow p-3 mb-4 bg-body rounded-top border-top border-2 border-secondary ml-3" style="border-radius:10px;">
-          
-            <div class="card-body">
-                <h5 class="card-title"> <b>{{info.title}}</b></h5>
-                <hr>
-                <p class="card-text">{{info.information|safe|truncatechars:20}}</p> 
-                <a href="" data-target="#extraModal{{info.id}}" data-toggle="modal" class="card-link">Read More </a>
-                <hr>
-            </div>
-        </div>  
-      <br>
-{% endfor %}
-</div>
-
-    </div>
- 
-
-{% for info in informations %}
-<!-- Modal -->
-<div class="modal fade" id="extraModal{{info.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLongTitle"> <b> {{info.title}}</b></h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </div>
-      <div class="modal-body">
-        <img class="card-img-top" class="img-responsive" src="{{info.info_photo.url}}" data-target="#extraModal{{info.id}}" data-toggle="modal" size="80px200">
-        <br>
-        <hr>
-        <p class="card-text"> <b> </b>  {{info.information|safe}} </p>
-       
-        <label>Posted on: <b> {{info.post_date|date:"M d, Y"}}</b></label>
-         <h5>Posted by :<b>{{info.user}}</b></h5>
-         <h5 class="card-subtitle mb-2 text-dark">Mtaa: {{info.neighbourhood}}</h5>
-        <hr>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+<div id="Registration">
+    <div class="container">
+        <div class="text-center mt-5 mb-2 mx-auto">
+            <a class=" text-light dropdown-item fs-2 btn btn-outline-primary btn-lg" href="{% url 'add_info' %}">Post Blog</a>
+                {% comment %} <button class="btn btn-sm btn-transparent">
+                        <a class=" text-primary dropdown-item fs-3 btn btn-outline-secondary btn-lg" href="{% url 'add_info' %}">Post Blog</a>
+                </button> {% endcomment %}
+        
         </div>
-      </div>
+        <hr>
+        <div class="row">
+            {% for info in informations %}
+            <div style="" class="col-4 shadow p-3 mb-4 bg-body rounded-top border-top border-2 border-secondary ml-3" style="border-radius:10px;">
+            
+                <div class="card-body">
+                    <h5 class="card-title"> <b>{{info.title}}</b></h5>
+                    <hr>
+                    <p class="card-text">{{info.information|safe|truncatechars:20}}</p> 
+                    <a href="" data-target="#extraModal{{info.id}}" data-toggle="modal" class="card-link btn btn-sm btn-outline-primary">Read More </a>
+                    <hr>
+                </div>
+            </div>  
+        <br>
+     {% endfor %}
+     </div>
     </div>
+    {% for info in informations %}
+    <!-- Modal -->
+   <div class="modal fade" id="extraModal{{info.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle"> <b> {{info.title}}</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img class="card-img-top" class="img-responsive" src="{{info.info_photo.url}}" data-target="#extraModal{{info.id}}" data-toggle="modal" size="80px200">
+                <br>
+                <hr>
+                <p class="card-text"> <b> </b>  {{info.information|safe}} </p>
+            
+                <label>Posted on: <b> {{info.post_date|date:"M d, Y"}}</b></label>
+                <h5>Posted by :<b>{{info.user}}</b></h5>
+                <h5 class="card-subtitle mb-2 text-dark">Mtaa: {{info.neighbourhood}}</h5>
+                <hr>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+         </div>
+     </div>
   </div>
 </div>
+
  {% endfor %}
 {% endblock %}

@@ -3,44 +3,43 @@
 {% load bootstrap4 %}
 {% block content %}
 
-<div class="container">
-  <h4 class="card-title mt-3 text-center"><strong>{{blog.title}}</strong></h4>
-  
-    <h6 class="card-subtitle mb-2 text-muted text-center">Posted by {{blog.username}}</h6>
-  
-  <div class="card">
-     <img class="card-img-top" src="{{blog.info_photo.url}}" alt="post photo" class="img-fluid"  style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);">
-    {% comment %} <img class="card-img-top" src="{{blog.photo.url}}"> {% endcomment %}
+<div id="Registration">
+  <div class="container">
+    <br>
+    <h4 class="card-title mt-3 text-center"><strong>{{blog.title}}</strong></h4>
+    <h5 class="card-subtitle mb-2 text-light text-center">Posted by <b>{{blog.username}}</b></h5>
+    <hr>
+    <div class="card">
+      <img class="card-img-top" src="{{blog.info_photo.url}}" alt="post photo" class="img-fluid"  style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);">
+      <div class="card-body">
+        <p class="card-text">{{blog.post | safe}}</p>
+      </div>
+      <div class="card-footer">
+        {% if comments%}
+        <h4 class="text-center">Comments</h4>
+        {% for comment in comments %}
+        <p>
+          <strong>{{comment.username.username}}</strong> {{comment.comment}}
+        </p>
+        {% endfor %}
 
-    <div class="card-body">
+        {%else %}
+        <h4 class="text-center">No comments made for this blog post yet</h4>
+        <hr>
+        {% endif %}
+        <form action="/view/blog/{{blog.id}}" method="post" enctype="multipart/form-data">
+          {%csrf_token%}
 
-      <p class="card-text">{{post.post | safe}}</p>
-    </div>
-    <div class="card-footer">
-      {% if comments%}
-      <h4 class="text-center">Comments</h4>
-      {% for comment in comments %}
-      <p>
-        <strong>{{comment.username.username}}</strong> {{comment.comment}}
-      </p>
-      {% endfor %}
-
-      {%else %}
-      <h3 class="text-center">No comments made for this blog post yet</h3>
-      <hr>
-      {% endif %}
-
-      <form action="/view/blog/{{blog.id}}" method="post" enctype="multipart/form-data">
-        {%csrf_token%}
-
-        {% bootstrap_form form%}
-        <div class="text-center">
-          <input id="votes-input" type="submit" class="btn btn-success btn-lg" value="Post">
-        </div>
-      </form>
+          {% bootstrap_form form%}
+          <button style="border: solid 1px #333; padding: 1em;" class="btn btn-outline-secondary btn-block mb-4 mx-auto" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <i class="fas fa-upload fa-lg"></i> Upload
+        </button>
+        </form>
+      </div>
     </div>
   </div>
-
+  <br>
 </div>
+
 
 {% endblock %}
