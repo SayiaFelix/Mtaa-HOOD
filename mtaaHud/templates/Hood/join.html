@@ -1,32 +1,33 @@
 {% extends 'Hood/base.html' %}
 {% load static %}
 {% load bootstrap4 %}
-
 {% block content %}
-<div class="container">
-    <h1 class="text-center" style="font-size: 50px"> <span class="text-muted">Create Hood</span> or <span class="text-primary">Join Hood<span> </h1>
-    <hr class="text-dark">
-    
-    <div class="containe">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 image">
-                <a href="{% url 'add_hood'%}">
-                    <img src="{% static 'images/join.jpg' %}" alt="" style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);" class="card-img-top image-fluid">
-                    <h4 class="mtaa">Create Hood
-                    </h4>
-                </a>
-            </div>
-             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 image">
-                <a href="{% url 'update-profile' %}">
-                    <img src="{% static 'images/hudaa.jpg' %}" alt="" style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);" class="card-img-top image-fluid">
-                    <h4 class="mtaa">
-                        Join Hood
-                    </h4>
-                </a>
-            </div> 
-        </div>
-    </div>
-    
+<div id="Registration">
+    <div class="container-fluid">
+        <br>
+        <h1 class="text-center" style="font-size: 50px"> <span class="text-muted">Create Hood</span> <span class="text-light">or</span> <span class="text-primary">Join Hood<span> </h1>
+        <hr class="text-dark">
+        
+            <div class="row text-center ml-5">
+                <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 image ml-5">
+                    <a href="{% url 'add_hood'%}">
+                        <img src="{% static 'images/join.jpg' %}" alt="" style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);" class="card-img-top image-fluid">
+                        <h4 class="mtaa">Create Hood
+                        </h4>
+                    </a>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 image ml-5">
+                    <a href="{% url 'update-profile' %}">
+                        <img src="{% static 'images/hudaa.jpg' %}" alt="" style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);" class="card-img-top image-fluid">
+                        <h4 class="mtaa">
+                            Join Hood
+                        </h4>
+                    </a>
+                </div> 
+           </div>
+    </div>  
+    <br>
+ </div>  
     <style>
         .mtaa {
             position: absolute;
@@ -53,5 +54,5 @@
             padding: 0 !important;
         }
     </style> 
-    </div>
+  
 {% endblock %}

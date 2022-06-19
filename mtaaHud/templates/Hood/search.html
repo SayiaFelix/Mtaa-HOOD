@@ -4,13 +4,15 @@
 {% block content %}
 <div id="Registration">
     <div class="container">
+      <br>
       <div class="row">
           {% if posts %}
-          <h2>Found {{posts|length}} results with the search term "{{message}}"</h2>
+          <h2 class="text-light" >Found {{posts|length}} results with the search term <b>"{{message}}"</b></h2>
           {% else %}
-          <h2>Found 0 results for the search term "{{message}}"</h2>
+          <h2>Found 0 results for the search term <b>"{{message}}"</b></h2>
           {% endif %}
       </div>
+      <hr>
       {% if posts %}
       <div class="">
           <div class="panel">
@@ -19,13 +21,9 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                       <div class="card">
                         <div class=" card-body">
-                          <h5 class="card-title">Title: {{post.title}} posted by {{post.username}}</h5> 
+                          <h5 class="card-title"><b>{{post.title}} </b>posted by <b>{{post.username}}</b></h5> 
                           <p class="card-text">{{post.post| safe}}</p>
-                          <a href="" data-target="#extraModal{{post.id}}" data-toggle="modal" class="card-link">Read More </a>
-                          
-                          <a style="float: right"href="/post/{{post.id}}">
-                            View
-                          </a>
+                          <a href="" class="btn btn-sm btn-outline-primary" data-target="#extraModal{{post.id}}" data-toggle="modal" class="card-link">Read More </a>
                         </div>
                       </div>
                     </div>
@@ -35,19 +33,17 @@
                 {% for post in posts %}
                 <!-- Modal -->
                 <div class="modal fade" id="extraModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
-                  <div class="modal-dialog text-center" role="document">
+                  <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h6 class="modal-title" id="exampleModalLongTitle"> <b> {{post.title}}</b> posted by  <b>{{post.username}}</b></h6>
+                        <h4 class="modal-title" id="exampleModalLongTitle"> <b> {{post.title}}</b> posted by  <b>{{post.username}}</b></h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                       </div>
                       <div class="modal-body">
-                        
-                        <img class="card-img-top" class="img-responsive" src="{{post.photo.url}}" data-target="#extraModal{{post.id}}" data-toggle="modal" size="80px200">
+                        <img class="card-img-top" class="img-responsive" src="{{post.image.url}}" data-target="#extraModal{{post.id}}" data-toggle="modal" size="80px200">
                         <br>
                         <hr>
-                      
                         <p class="card-text"> <b>Bio: </b>  {{post.post|safe}} </p>
                       
                         <label>Posted on: <b> {{post.post_date|date:" M d Y" }} </b></label>
@@ -60,7 +56,8 @@
                     </div>
                   </div>
                 </div>
-                  {% endfor %}
+                <br>
+                {% endfor %}
               </div>
           </div>
       </div>

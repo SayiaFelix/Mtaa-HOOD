@@ -20,7 +20,6 @@
           <div class=" card-body">
               <h3 class="card-title">{{post.title}}</h3>
             <hr>
-            {% comment %} <h5 class="card-subtitle mb-2 text-dark">{{post.username}}</h5>  {% endcomment %}
             <p class="card-text">{{post.post| safe|truncatechars:20}}</p>
             <hr>
               <a class="btn btn-sm btn-outline-primary"href="view/blog/{{post.id}}">
