@@ -28,6 +28,11 @@ class CommentForm(forms.ModelForm):
         model = Comment
         exclude = ['username', 'post']
 
+class HoodForm(forms.ModelForm):
+
+	class Meta:
+		model = Hood
+		exclude = ['occupants_count']
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()

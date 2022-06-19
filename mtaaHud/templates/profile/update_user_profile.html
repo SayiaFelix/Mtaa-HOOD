@@ -6,6 +6,16 @@
     {% if form.errors %}
       <p>Please enter correct value</p>
     {% endif %}   
+      <hr>
+                 {%if messages%}
+                    {%for message in messages%}
+                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                              {{message}}
+                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                     {%endfor%}
+                  {%endif%}   
+    <br> 
   <div class="mx-auto" style="max-width:50rem; margin-top:50px;">
         <div class="card">
               <h4 class="card-header h4 text-center">Update Profile</h4>

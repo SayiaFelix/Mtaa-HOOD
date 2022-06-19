@@ -42,18 +42,31 @@ def information(request):
 
     return render(request, 'Hood/info.html', {"informations":informations})
 
+def add_hood(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = HoodForm(request.POST, request.FILES)
+        if form.is_valid():
+            hood = form.save(commit=False)
+            hood.user = current_user
+            hood.save()
+            messages.success(request, 'You Have succesfully created a hood.Now proceed and join a hood')
 
-# def post(request):
-#     current_user=request.user
-#     try:
-#      profile = Profile.objects.get(user=current_user)
+        return redirect('update-profile')
+    else:
+        form = HoodForm()
 
-#     except Profile.DoesNotExist:
-#       profile = None
-#     # profile = Profile.objects.get(user=current_user)
-#     posts = Post.objects.filter(neighbourhood=profile.neighbourhood)
+    return render(request, 'Hood/add_hood.html', {"form": form})
 
-#     return render(request, 'Hood/posts.html', {"posts":posts})
+
+def exitHood(request, hoodId):
+
+    if Join.objects.filter(user_id=request.user).exists():
+        Join.objects.get(user_id=request.user).delete()
+        messages.error(
+            request, 'You have succesfully exited this Neighbourhood.')
+        return redirect('home')
+
 
 def post(request):
     current_user=request.user
