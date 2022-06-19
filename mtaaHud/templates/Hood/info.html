@@ -5,48 +5,58 @@
 {% block content %}
 <div class="container">
     <div class="text-center mt-5 mb-2 mx-auto">
-        <a href="{% url 'add_info' %}">
-            <button class="btn btn-lg btn-success">Post Information</button>
-        </a> 
+         <a class=" text-primary dropdown-item fs-3 btn btn-outline-secondary btn-lg" href="{% url 'add_info' %}">Post Blog</a>
+        {% comment %} <a href="{% url 'add_info' %}">
+            <button class="btn btn-lg btn-success">
+                Post Blog</button>
+        </a>  {% endcomment %}
     </div>
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Information</th>
-                <th scope="col">Posted by</th>
-                <th scope="col">Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for info in informations %}
-            <tr data-toggle="modal" data-target="#{{info.id}}">
-                <td>{{info.title}}</td>
-                <td>{{info.information|safe|truncatechars:85}}</td>
-                <td>{{info.user}}</td>
-                <td>{{info.post_date|date:"M d, Y"}}</td>
-            </tr>
-            <!-- Modal -->
-            <div class="modal fade" id="{{info.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content text-center">
-                        <div class="modal-header text-center">
-                            <h3 class="text-center">{{info.title}}</h3>
-                        </div>
-                        <div class="modal-body">
-                              <img class="card-img-top" class="img-responsive" src="{{info.info_photo.url}}" data-target="#extraModal{{info.id}}" data-toggle="modal" size="80px200">
-                            <p class="pmodal">{{info.information|safe}}</p>
-                        </div>
-                        <div class="modal-footer" style="display:block;">
-                          
-                            <p><span style="font-weight:bold;">Posted on:</span>
-                                {{info.post_date|date:"M d, Y"}}</p>
-                        </div>
-                    </div>
-                </div>
+    <hr>
+    <div class="row">
+          {% for info in informations %}
+        <div style="width: 20rem;" class="col-3 shadow p-3 mb-4 bg-body rounded-top border-top border-2 border-secondary ml-3" style="border-radius:10px;">
+          
+            <div class="card-body">
+                <h5 class="card-title"> <b>{{info.title}}</b></h5>
+                <hr>
+                <p class="card-text">{{info.information|safe|truncatechars:20}}</p> 
+                <a href="" data-target="#extraModal{{info.id}}" data-toggle="modal" class="card-link">Read More </a>
+                <hr>
             </div>
-            {% endfor %}
-        </tbody>
-    </table>
+        </div>  
+      <br>
+{% endfor %}
 </div>
+
+    </div>
+ 
+
+{% for info in informations %}
+<!-- Modal -->
+<div class="modal fade" id="extraModal{{info.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLongTitle"> <b> {{info.title}}</b></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </div>
+      <div class="modal-body">
+        <img class="card-img-top" class="img-responsive" src="{{info.info_photo.url}}" data-target="#extraModal{{info.id}}" data-toggle="modal" size="80px200">
+        <br>
+        <hr>
+        <p class="card-text"> <b> </b>  {{info.information|safe}} </p>
+       
+        <label>Posted on: <b> {{info.post_date|date:"M d, Y"}}</b></label>
+         <h5>Posted by :<b>{{info.user}}</b></h5>
+         <h5 class="card-subtitle mb-2 text-dark">Mtaa: {{info.neighbourhood}}</h5>
+        <hr>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ {% endfor %}
 {% endblock %}
