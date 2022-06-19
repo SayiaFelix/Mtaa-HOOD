@@ -23,17 +23,28 @@ def homepage(request):
     #       profile = Profile.objects.get(user=current_user)
     #     except Profile.DoesNotExist:
     #       profile = None
-    #     # profile = Profile.objects.get(username=current_user)
+   
     # except ObjectDoesNotExist:
     #     return redirect('')
 
     return render(request,"Hood/homepage.html")
 
-
+@login_required
 def join_hood(request):
   
     return render(request,"Hood/join.html")
 
+@login_required
+def leaveHud(request, hoodId):
+
+    if Join.objects.filter(user_id=request.user).exists():
+        Join.objects.get(user_id=request.user).delete()
+        messages.error(
+            request, 'You have succesfully exited this Neighbourhood.')
+        return redirect('homepage')
+
+
+@login_required
 def information(request):
     current_user = request.user
     try:
@@ -47,6 +58,7 @@ def information(request):
 
     return render(request, 'Hood/info.html', {"informations":informations})
 
+@login_required
 def add_hood(request):
     current_user = request.user
     if request.method == 'POST':
@@ -63,7 +75,7 @@ def add_hood(request):
 
     return render(request, 'update/update_hood.html', {"form": form})
 
-
+@login_required
 def post(request):
     current_user=request.user
     profile = Profile.objects.get(user=current_user)
@@ -71,6 +83,7 @@ def post(request):
 
     return render(request, 'Hood/posts.html', {"posts":posts})
 
+@login_required
 def view_post(request, id):
   
     try:
@@ -93,6 +106,8 @@ def view_post(request, id):
         form = CommentForm()
         return render(request,  'Hood/view_post.html', {"blog":blog, "form":form, "comments":comments})
 
+
+@login_required
 def health(request):
     current_user = request.user
     profile = Profile.objects.get(user=current_user)
@@ -100,7 +115,7 @@ def health(request):
 
     return render(request, 'Hood/healthservices.html', {"healthservices":healthservices})
 
-
+@login_required
 def services(request):
     current_user=request.user
     profile=Profile.objects.get(user=current_user)
@@ -108,7 +123,7 @@ def services(request):
 
     return render(request, 'Hood/security.html', {"securities":securities})
 
-
+@login_required
 def businesses(request):
     current_user = request.user
     profile = Profile.objects.get(user = current_user)
@@ -116,18 +131,17 @@ def businesses(request):
 
     return render(request, 'Hood/businesses.html', {"businesses":businesses})
 
+@login_required
 def user_profile(request,profile_id):
      current_user = request.user
      try:
-      profile = Profile.objects.get(pk = profile_id)
+      profile = Profile.objects.get(user=current_user)
 
      except Profile.DoesNotExist:
       profile = None
-
-   
-   
      return render(request,"profile/profile.html",{"profile":profile})
 
+@login_required
 def update_profile(request):
     current_user = request.user
     if request.method == 'POST':
@@ -135,7 +149,7 @@ def update_profile(request):
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = current_user
-            # profile.save()
+            profile.save()
         return redirect('homepage')
 
     else:
@@ -187,6 +201,7 @@ def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse("login"))
 
+@login_required
 def search(request):
     if 'post' in request.GET and request.GET["post"]:
         search_term = request.GET.get("post")
@@ -199,6 +214,7 @@ def search(request):
         message = "You haven't searched for any term"
         return render(request, 'Hood/search.html', {"message":message})
 
+@login_required
 def add_business(request):
     current_user = request.user
     profile = Profile.objects.get(user=current_user)
@@ -218,7 +234,7 @@ def add_business(request):
 
     return render(request, 'update/update_buss.html', {"form":form})
 
-
+@login_required
 def add_info(request):
     current_user = request.user
     profile = Profile.objects.get(user = current_user)
@@ -238,6 +254,7 @@ def add_info(request):
 
     return render(request, 'update/update_info.html', {"form":form})
 
+@login_required
 def add_post(request):
     current_user = request.user
     profile = Profile.objects.get(user =current_user)

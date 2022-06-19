@@ -5,7 +5,7 @@
 <div id="Registration">
   <div class="container text-light">
     <br>
-       <h3 class=""> <b>{{ profile.user }}</b> Profile Info</h3>
+       <h3 class="">  Profile Info for <b>{{ profile.user }}</b>:</h3>
        <h4 class="">Mtaa: <b>{{ profile.neighbourhood }}</b></h4>
        <hr>
         <div class="row">  
@@ -31,7 +31,7 @@
                 </ul>
                 {% if profile.user == user %}
                 <button style="border: solid 1px #333; padding: 1em;" class="btn btn-sm btn-outline-secondary btn-block mb-4 mx-auto" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                               <i class="fas fa-upload fa-lg"></i><a style= "text-decoration: none;"href="{% url 'upload_project' %}">upload Project</a>
+                               <i class="fas fa-upload fa-lg"></i><a style= "text-decoration: none;text-light"href="{% url 'update-profile' %}">update Profile</a>
                              </button>
                 {% endif %}  
                 <h6 class=""> <b>Contact:</b> <em> {{profile.contact}}</em></h6>

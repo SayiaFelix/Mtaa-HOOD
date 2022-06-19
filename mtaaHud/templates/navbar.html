@@ -15,9 +15,9 @@
          Profile
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          {% comment %} <a class="dropdown-item fs-6" href="/profile/{{user.id}}">Profile</a> {% endcomment %}
-          {% comment %} <hr> {% endcomment %}
           <a class="dropdown-item fs-6" href="{% url 'update-profile' %}">Update Profile</a>
+          <hr>
+          <a class="dropdown-item fs-6" href="" >Leave hood</a> 
           <hr>
           <a  class="dropdown-item fs-6" href="/logout" class="">Log Out</a>
         </div>
