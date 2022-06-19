@@ -59,15 +59,6 @@ def add_hood(request):
     return render(request, 'update/update_hood.html', {"form": form})
 
 
-def exitHood(request, hoodId):
-
-    if Join.objects.filter(user_id=request.user).exists():
-        Join.objects.get(user_id=request.user).delete()
-        messages.error(
-            request, 'You have succesfully exited this Neighbourhood.')
-        return redirect('home')
-
-
 def post(request):
     current_user=request.user
     profile = Profile.objects.get(user=current_user)
