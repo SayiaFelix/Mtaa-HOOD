@@ -8,9 +8,7 @@ urlpatterns=[
     url('^$',views.homepage, name='homepage'),
     url('hood/', views.add_hood, name='add_hood'),
     url('join/', views.join_hood, name='join_hood'),
-    url('leaveHud/(\d+)', views.leaveHud, name='leaveHud'),
-
-
+   
     url('information', views.information, name='info'),
     url('new/info', views.add_info, name = 'add_info'),
 

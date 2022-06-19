@@ -14,35 +14,11 @@ from django.urls import reverse
 
 # Create your views here.
 def homepage(request):
-    # try:
-    #     if not request.user.is_authenticated:
-    #         return redirect('/accounts/login/')
-    #     current_user = request.user
-
-    #     try:
-    #       profile = Profile.objects.get(user=current_user)
-    #     except Profile.DoesNotExist:
-    #       profile = None
-   
-    # except ObjectDoesNotExist:
-    #     return redirect('')
-
     return render(request,"Hood/homepage.html")
 
 @login_required
 def join_hood(request):
-  
     return render(request,"Hood/join.html")
-
-@login_required
-def leaveHud(request, hoodId):
-
-    if Join.objects.filter(user_id=request.user).exists():
-        Join.objects.get(user_id=request.user).delete()
-        messages.error(
-            request, 'You have succesfully exited this Neighbourhood.')
-        return redirect('homepage')
-
 
 @login_required
 def information(request):
@@ -53,7 +29,6 @@ def information(request):
     except Profile.DoesNotExist:
       profile = None
 
-    # profile = Profile.objects.get(username=current_user)
     informations = Information.objects.filter(neighbourhood=profile.neighbourhood)
 
     return render(request, 'Hood/info.html', {"informations":informations})
@@ -74,7 +49,6 @@ def add_hood(request):
         form = HoodForm()
 
     return render(request, 'update/update_hood.html', {"form": form})
-
 
 @login_required
 def post(request):
@@ -175,7 +149,6 @@ def login_user(request):
 
      return render(request,'registration/login.html')
 
-
 def register_user(request):
     if request.method == 'POST':
          form = UserRegisterForm(request.POST)
@@ -184,7 +157,6 @@ def register_user(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             
-
             email = form.cleaned_data['email']
             # send_welcome_email(username,email) 
 
