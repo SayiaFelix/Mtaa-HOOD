@@ -56,7 +56,7 @@ def add_hood(request):
     else:
         form = HoodForm()
 
-    return render(request, 'Hood/add_hood.html', {"form": form})
+    return render(request, 'update/update_hood.html', {"form": form})
 
 
 def exitHood(request, hoodId):
