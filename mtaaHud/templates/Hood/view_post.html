@@ -9,13 +9,15 @@
     <h5 class="card-subtitle mb-2 text-light text-center">Posted by <b>{{blog.username}}</b></h5>
     <hr>
     <div class="card">
-      <img class="card-img-top" src="{{blog.info_photo.url}}" alt="post photo" class="img-fluid"  style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);">
+      <img class="card-img-top" src="{% static 'images/home.jpg' %}" height="650px" alt="post photo" class="img-fluid"  style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);">
+      <hr>
       <div class="card-body">
-        <p class="card-text">{{blog.post | safe}}</p>
+        <p class="card-text"><b>Description: </b>{{blog.post | safe}}</p>
       </div>
       <div class="card-footer">
         {% if comments%}
-        <h4 class="text-center">Comments</h4>
+        <h4 class="text-center fw-bold">Comments</h4>
+        <hr>
         {% for comment in comments %}
         <p>
           <strong>{{comment.username.username}}</strong> {{comment.comment}}
@@ -31,7 +33,7 @@
 
           {% bootstrap_form form%}
           <button style="border: solid 1px #333; padding: 1em;" class="btn btn-outline-secondary btn-block mb-4 mx-auto" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <i class="fas fa-upload fa-lg"></i> Upload
+            <i class="fas fa-upload fa-lg"></i> post
         </button>
         </form>
       </div>
