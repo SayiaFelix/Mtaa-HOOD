@@ -2,8 +2,69 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block content %}
+<div id="Registration">
 
-<div class="container">
+  <div class="container">
+      <div class="col-md-12 mt-3">
+        <br>
+          <h1 class="text-center text-light"> Health Services</h1>
+          <hr>
+        </div>
+      <div class="row">
+        {% for health in healthservices %}
+        <section class="global-page-header"style="border-radius: 10px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                        <h2 class="fw-bold text-light">{{health.name}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section class="portfolio-single">
+        <div class="container text-light">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="portfolio-single-img">
+                        <img src="{{health.photo.url}}"style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);" class="card-img-top image-fluid" height="300px" width="550px" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="portfolio-content">
+                        <h3 class="subtitle fw-bold text-dark"> Details</h3>
+                        <hr>
+                        <p>
+                          <span><b>Description:</b></span> {{business.description|safe}}
+                        </p>
+                        <p><b>Owner:</b> {{business.owner}}</p>
+                        <hr>
+                            <div class="modal-footer" style="display:block;">
+                                <h4 class="text-center fw-bold">Contacts</h4>
+                                <hr>
+                                <p><span><b>Phone Number:</b></span> {{health.contact}}</p>
+                                <p><span><b>Address:</b></span> {{health.address}}</p>
+                                <p><span><b>Email:</b></span>  {{health.email}}</p>
+                            </div>
+                              <div class="modal-footer" style="display:block;">
+                                  {% for healthservice in health.healthservices.all %}
+                                  <button class="btn btn-warning">{{ healthservice }}</button>
+                                  {% endfor%}
+                               </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        {% endfor %}
+   </div>
+  </div>
+</div>
+
+{% comment %} <div class="container">
   <div class="row">
     <div class="col-md-12 mt-3">
       <h1>Health Services</h1>
@@ -14,7 +75,7 @@
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title" data-toggle="modal" data-target="#{{health.id}}">{{health.name}}</h3>
+          <h3 class="card-title" data-toggle="modal" data-target="#{{health.id}}"></h3>
         </div>
       </div>
     </div>
@@ -24,22 +85,13 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content text-center">
           <div class="modal-header text-center">
-            <h3 class="text-center">{{health.name}}</h3>
+            <h3 class="text-center"></h3>
           </div>
           <div class="modal-body">
-            <img class="card-img-top" src="{{health.photo.url}}" height=200 width=100>
-
-            <h4 class="text-center">Contacts</h4>
-            <p><span>Phone Number:</span> {{health.contact}}</p>
-            <p><span>Address:</span> {{health.address}}</p>
-            <p><span>Email:</span> {{health.email}}</p>
-          </div>
-          <div class="modal-footer" style="display:block;">
-            {% for healthservice in health.healthservices.all %}
-            <button class="btn btn-warning">{{ healthservice }}</button>
-            {% endfor%}
+            <img class="card-img-top" src="" height=200 width=100>
 
           </div>
+        
 
         </div>
       </div>
@@ -47,6 +99,6 @@
     {% endfor %}
   </div>
 
-</div>
+</div> {% endcomment %}
 
 {% endblock %}
