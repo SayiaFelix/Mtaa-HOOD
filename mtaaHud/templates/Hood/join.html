@@ -1,0 +1,57 @@
+{% extends 'Hood/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center"> <span class="text-muted">Create Hood</span> or <span class="text-primary">Join Hood<span> </h2>
+    <hr class="text-dark">
+    
+    <div class="containe">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 image">
+                <a href="{% url 'add_hood'%}">
+                    <img src="{% static 'images/join.jpg' %}" alt="" style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);" class="card-img-top image-fluid">
+                    <h4 class="mtaa">Create Hood
+                    </h4>
+                </a>
+            </div>
+             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 image">
+                <a href="{% url 'update-profile' %}">
+                    <img src="{% static 'images/hudaa.jpg' %}" alt="" style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);" class="card-img-top image-fluid">
+                    <h4 class="mtaa">
+                        Join Hood
+                    </h4>
+                </a>
+            </div> 
+        </div>
+    </div>
+    
+    <style>
+        .mtaa {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5%;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+    
+        .mtaa:hover {
+            background-color: rgba(255, 255, 255, 0.7);
+            color: black;
+            font-family: 'Montserrat', sans-serif;
+            border-radius:20px;
+            border-top:2px solid rgba(255, 255, 255, 0.5);
+        }
+    
+        .image {
+            padding: 0 !important;
+        }
+    </style> 
+    </div>
+{% endblock %}
