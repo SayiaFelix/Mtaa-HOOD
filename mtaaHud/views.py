@@ -75,6 +75,7 @@ def add_hood(request):
 
     return render(request, 'update/update_hood.html', {"form": form})
 
+
 @login_required
 def post(request):
     current_user=request.user
@@ -190,7 +191,7 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request,user)
             messages.success(request,f'Hello {username}, Your account was Successfully Created.You will receive our email shortly.Thank You!!!')
-            return redirect('update-profile')
+            return redirect('homepage')
     else:
          form = UserRegisterForm()
     return render (request,'registration/register.html',{'form':form})
