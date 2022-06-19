@@ -7,12 +7,12 @@
   <div class="container">
       <div class="col-md-12 mt-3">
         <br>
-          <h1 class="text-center text-light"> Health Services</h1>
+          <h1 class="text-center text-light"style="font-size: 50px"> Health Services</h1>
           <hr>
         </div>
       <div class="row">
         {% for health in healthservices %}
-        <section class="global-page-header"style="border-radius: 10px;">
+        <section class="global-page-header"style="border-radius: 15px; border-top: 2px solid white">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -23,27 +23,23 @@
             </div>
         </div>
     </section>
+    <br>
     <hr>
     <section class="portfolio-single">
         <div class="container text-light">
             <div class="row">
                 <div class="col-md-6">
                     <div class="portfolio-single-img">
-                        <img src="{{health.photo.url}}"style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);" class="card-img-top image-fluid" height="300px" width="550px" alt="">
+                       <br><br> <br>
+                        <img src="{% static 'images/hospital.jpeg' %}"style="border-radius: 10px; box-shadow: 5px 5px 10px rgba(3,3,3,0.7);" class="card-img-top image-fluid" height="300px" width="550px" alt="">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="portfolio-content">
-                        <h3 class="subtitle fw-bold text-dark"> Details</h3>
-                        <hr>
-                        <p>
-                          <span><b>Description:</b></span> {{business.description|safe}}
-                        </p>
-                        <p><b>Owner:</b> {{business.owner}}</p>
-                        <hr>
+                        <h3 class="subtitle fw-bold text-dark">Hospital Details</h3>
+                          <br>
                             <div class="modal-footer" style="display:block;">
-                                <h4 class="text-center fw-bold">Contacts</h4>
-                                <hr>
+                             <br>
                                 <p><span><b>Phone Number:</b></span> {{health.contact}}</p>
                                 <p><span><b>Address:</b></span> {{health.address}}</p>
                                 <p><span><b>Email:</b></span>  {{health.email}}</p>
@@ -63,42 +59,4 @@
    </div>
   </div>
 </div>
-
-{% comment %} <div class="container">
-  <div class="row">
-    <div class="col-md-12 mt-3">
-      <h1>Health Services</h1>
-    </div>
-  </div>
-  <div class="row">
-    {% for health in healthservices %}
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title" data-toggle="modal" data-target="#{{health.id}}"></h3>
-        </div>
-      </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="{{health.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content text-center">
-          <div class="modal-header text-center">
-            <h3 class="text-center"></h3>
-          </div>
-          <div class="modal-body">
-            <img class="card-img-top" src="" height=200 width=100>
-
-          </div>
-        
-
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-
-</div> {% endcomment %}
-
 {% endblock %}

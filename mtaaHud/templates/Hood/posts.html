@@ -4,9 +4,15 @@
 {% load bootstrap4 %}
 <div id="Registration">
   <div class="container">
+     <div class="col-md-12 mt-3">
+        <br>
+          <h1 class="text-center text-light" style="font-size: 50px"> Posts</h1>
+          <hr>
+        </div>
     <div class="text-center mt-5 mb-2">
           <a class="dropdown-item fs-5 btn btn-outline-secondary btn-lg" href="{% url 'add_info' %}">Create Post</a>
     </div>
+    <hr>
     <div class="row">
       {% for post in posts %}
       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">

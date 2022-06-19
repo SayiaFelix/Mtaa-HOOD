@@ -5,8 +5,13 @@
 {% block content %}
 <div id="Registration">
     <div class="container">
+         <div class="col-md-12 mt-3">
+        <br>
+          <h1 class="text-center text-light" style="font-size: 50px"> BlogPosts</h1>
+          <hr>
+        </div>
         <div class="text-center mt-5 mb-2 mx-auto">
-            <a class=" text-light dropdown-item fs-2 btn btn-outline-primary btn-lg" href="{% url 'add_info' %}">Post Blog</a>
+            <a class=" text-light dropdown-item fs-4 btn btn-outline-primary btn-lg" href="{% url 'add_info' %}">Post Blog</a>
                 {% comment %} <button class="btn btn-sm btn-transparent">
                         <a class=" text-primary dropdown-item fs-3 btn btn-outline-secondary btn-lg" href="{% url 'add_info' %}">Post Blog</a>
                 </button> {% endcomment %}
