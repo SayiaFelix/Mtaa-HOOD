@@ -137,7 +137,7 @@ class Profile(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=150)
-    photo = models.ImageField(upload_to='post/')
+    image = models.ImageField(upload_to='post/')
     post = HTMLField()
     username = models.ForeignKey(User, on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Hood, on_delete=models.CASCADE)
