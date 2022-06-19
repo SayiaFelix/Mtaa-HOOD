@@ -3,7 +3,7 @@
 ## Author: [Sayia Felix](https://github.com/SayiaFelix)
 
 ## Description
-This application help a user to connect with other members of his/her neighbourhood.A user is able to sign in and see what is going on in his/her neighbourhood and also post what he/she feels.
+This application enables a user to connect with other members of his/her neighbourhood.A user is able to sign in and see what is going on in his/her neighbourhood and also post what he/she feels.
 
 <a href="https://sir-neibahud.herokuapp.com/" target="_blank">
     <img src="https://img.shields.io/static/v1?label=|&message=WEBSITE&color=ff&style=plastic&logo=realm&logo-color=white"/>
@@ -48,7 +48,7 @@ Admin should:
 | Behavior            | Input                         | Output                        | 
 | ------------------- | ----------------------------- | ----------------------------- |
 | User visits the app and gets directed to the home page  | User join mtaa | Directed to the home page | 
-If user has no account, they click on `Register` | User Register up | User is redirected to the profile set up page |
+If user has no account, they click on `Register` | User Register  | User is redirected to the profile set up page |
 |  Homepage on Navbar| Click `Trends` You will see option,select one of your choice| User's taken to the destination| 
 | Homepage on Navbar | Click `Post Today` | User's redirected to a page where they can upload posts and reg business | 
 | Homepage on Navbar  | Click `User inputs/post in the search form and presses enter | Searched results show |
