@@ -14,7 +14,8 @@ urlpatterns=[
 
     url('post', views.post, name='post'),
     url('view/blog/(\d+)', views.view_post, name='view_blog'),
-    url('news/post', views.add_post, name='add_post'),
+    url('add/pos', views.add_post, name='add_pos'),
+    
 
     url('health', views.health, name='health'),
     url('search/', views.search, name = 'search'),
